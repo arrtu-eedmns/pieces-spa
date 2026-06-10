@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radio — neutral kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:ital,wght@0,100..700;1,100..700&display=swap">
+<!-- @arrtu/pieces -->
+<link rel="stylesheet" href="../../../npm/css/core/theme.css">
+<link rel="stylesheet" href="../../../npm/css/core/surface.css">
+<link rel="stylesheet" href="../../../npm/css/utils/ripple.css">
+<link rel="stylesheet" href="../../../npm/css/neutral/radio.css">
+<style>
+:root {
+  --piece-h: 248;
+  --piece-s: 16%;
+  --piece-a: 100%;
+  --cursor-pointer: pointer;
+  --cursor-default: default;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: "Google Sans Flex", sans-serif; }
+body { min-height: 100dvh; padding: 32px 24px; display: grid; gap: 48px; align-content: start; }
+h1  { font-size: 22px; font-weight: 700; }
+h2  { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
+.num { display: grid; place-content: center; width: 18px; height: 18px; border-radius: 50%; font-size: 10px; font-weight: 700; }
+.note { font-size: 11px; opacity: .6; margin-top: -8px; }
+.section { display: grid; gap: 14px; }
+.row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.header { display: flex; align-items: center; justify-content: space-between; }
+.theme-hint { font-size: 11px; display: flex; align-items: center; gap: 8px; }
+</style>
+</head>
+<body class="piece-surface piece-dark background-color-auto-02 text-color-auto-20">
+
+<div class="header">
+  <h1>Radio — neutral kit</h1>
+  <div class="theme-hint">
+    <span class="piece-surface text-color-auto-14">dark</span>
+    <label class="piece-surface piece-checkbox piece-small
+                  background-color-auto-04 background-color-auto-06-hover
+                  background-color-auto-11-active text-color-auto-20 text-color-auto-00-active">
+      <input id="theme-btn" type="checkbox" class="piece-controller">
+      <span class="material-symbols-rounded piece-icon piece-false" translate="no">dark_mode</span>
+      <span class="material-symbols-rounded piece-icon piece-true"  translate="no">light_mode</span>
+    </label>
+    <span class="piece-surface text-color-auto-14">light</span>
+  </div>
+</div>
+
+<!-- 1. Form — formato de exportação (single-select) -->
+<div class="section">
+  <h2 class="piece-surface text-color-auto-14">
+    <span class="num piece-surface background-color-auto-05 text-color-auto-16">1</span>
+    Form — formato de exportação
+  </h2>
+  <p class="piece-surface text-color-auto-14 note">Caso de uso correto: valor enviado via FormData. Apenas um pode ser selecionado.</p>
+  <div class="row">
+    <label class="piece-surface piece-radio piece-medium
+                  background-color-auto-04 background-color-auto-06-hover
+                  background-color-auto-11-active background-color-auto-12-hover-active
+                  text-color-auto-20 text-color-auto-00-active">
+      <input type="radio" name="formato" value="pdf" class="piece-controller" checked>
+      <span class="material-symbols-rounded piece-icon piece-false" translate="no">picture_as_pdf</span>
+      <span class="material-symbols-rounded piece-icon piece-true"  translate="no">picture_as_pdf</span>
+    </label>
+    <label class="piece-surface piece-radio piece-medium
+                  background-color-auto-04 background-color-auto-06-hover
+                  background-color-auto-11-active background-color-auto-12-hover-active
+                  text-color-auto-20 text-color-auto-00-active">
+      <input type="radio" name="formato" value="csv" class="piece-controller">
+      <span class="material-symbols-rounded piece-icon piece-false" translate="no">table_view</span>
+      <span class="material-symbols-rounded piece-icon piece-true"  translate="no">table_view</span>
+    </label>
+    <label class="piece-surface piece-radio piece-medium
+                  background-color-auto-04 background-color-auto-06-hover
+                  background-color-auto-11-active background-color-auto-12-hover-active
+                  text-color-auto-20 text-color-auto-00-active">
+      <input type="radio" name="formato" value="img" class="piece-controller">
+      <span class="material-symbols-rounded piece-icon piece-false" translate="no">image</span>
+      <span class="material-symbols-rounded piece-icon piece-true"  translate="no">image</span>
+    </label>
+  </div>
+</div>
+
+<!-- 2. Form — frequência de backup -->
+<div class="section">
+  <h2 class="piece-surface text-color-auto-14">
+    <span class="num piece-surface background-color-auto-05 text-color-auto-16">2</span>
+    Form — frequência de backup
+  </h2>
+  <p class="piece-surface text-color-auto-14 note">Preferência persistida no servidor. Apenas uma opção válida por vez.</p>
+  <div class="row">
+    <label class="piece-surface piece-radio piece-medium
+                  background-color-auto-04 background-color-auto-06-hover
+                  background-color-auto-11-active background-color-auto-12-hover-active
+                  text-color-auto-20 text-color-auto-00-active">
+      <input type="radio" name="backup" value="daily" class="piece-controller" checked>
+      <span class="material-symbols-rounded piece-icon piece-false" translate="no">today</span>
+      <span class="material-symbols-rounded piece-icon piece-true"  translate="no">today</span>
+    </label>
+    <label class="piece-surface piece-radio piece-medium
+                  background-color-auto-04 background-color-auto-06-hover
+                  background-color-auto-11-active background-color-auto-12-hover-active
+                  text-color-auto-20 text-color-auto-00-active">
+      <input type="radio" name="backup" value="weekly" class="piece-controller">
+      <span class="material-symbols-rounded piece-icon piece-false" translate="no">view_week</span>
+      <span class="material-symbols-rounded piece-icon piece-true"  translate="no">view_week</span>
+    </label>
+    <label class="piece-surface piece-radio piece-medium
+                  background-color-auto-04 background-color-auto-06-hover
+                  background-color-auto-11-active background-color-auto-12-hover-active
+                  text-color-auto-20 text-color-auto-00-active">
+      <input type="radio" name="backup" value="monthly" class="piece-controller">
+      <span class="material-symbols-rounded piece-icon piece-false" translate="no">calendar_month</span>
+      <span class="material-symbols-rounded piece-icon piece-true"  translate="no">calendar_month</span>
+    </label>
+  </div>
+</div>
+
+<!-- 3. Ícones distintos por estado -->
+<div class="section">
+  <h2 class="piece-surface text-color-auto-14">
+    <span class="num piece-surface background-color-auto-05 text-color-auto-16">3</span>
+    Ícones distintos por estado
+  </h2>
+  <div class="row">
+    <label class="piece-surface piece-radio piece-medium
+                  background-color-auto-02 background-color-auto-04-hover
+                  background-color-auto-11-active background-color-auto-12-hover-active
+                  text-color-auto-18 text-color-auto-00-active">
+      <input type="radio" name="estado" value="a" class="piece-controller" checked>
+      <span class="material-symbols-rounded piece-icon piece-false" translate="no">radio_button_unchecked</span>
+      <span class="material-symbols-rounded piece-icon piece-true"  translate="no">radio_button_checked</span>
+    </label>
+    <label class="piece-surface piece-radio piece-medium
+                  background-color-auto-02 background-color-auto-04-hover
+                  background-color-auto-11-active background-color-auto-12-hover-active
+                  text-color-auto-18 text-color-auto-00-active">
+      <input type="radio" name="estado" value="b" class="piece-controller">
+      <span class="material-symbols-rounded piece-icon piece-false" translate="no">radio_button_unchecked</span>
+      <span class="material-symbols-rounded piece-icon piece-true"  translate="no">radio_button_checked</span>
+    </label>
+    <label class="piece-surface piece-radio piece-medium
+                  background-color-auto-02 background-color-auto-04-hover
+                  background-color-auto-11-active background-color-auto-12-hover-active
+                  text-color-auto-18 text-color-auto-00-active">
+      <input type="radio" name="estado" value="c" class="piece-controller">
+      <span class="material-symbols-rounded piece-icon piece-false" translate="no">radio_button_unchecked</span>
+      <span class="material-symbols-rounded piece-icon piece-true"  translate="no">radio_button_checked</span>
+    </label>
+  </div>
+</div>
+
+<!-- 4. Tamanhos -->
+<div class="section">
+  <h2 class="piece-surface text-color-auto-14">
+    <span class="num piece-surface background-color-auto-05 text-color-auto-16">4</span>
+    Tamanhos
+  </h2>
+  <div class="row">
+    <label class="piece-surface piece-radio piece-extra-small
+                  background-color-auto-04 background-color-auto-06-hover
+                  background-color-auto-11-active text-color-auto-20 text-color-auto-00-active">
+      <input type="radio" name="tam" value="xs" class="piece-controller" checked>
+      <span class="material-symbols-rounded piece-icon piece-false" translate="no">radio_button_unchecked</span>
+      <span class="material-symbols-rounded piece-icon piece-true"  translate="no">radio_button_checked</span>
+    </label>
+    <label class="piece-surface piece-radio piece-small
+                  background-color-auto-04 background-color-auto-06-hover
+                  background-color-auto-11-active text-color-auto-20 text-color-auto-00-active">
+      <input type="radio" name="tam" value="sm" class="piece-controller">
+      <span class="material-symbols-rounded piece-icon piece-false" translate="no">radio_button_unchecked</span>
+      <span class="material-symbols-rounded piece-icon piece-true"  translate="no">radio_button_checked</span>
+    </label>
+    <label class="piece-surface piece-radio piece-medium
+                  background-color-auto-04 background-color-auto-06-hover
+                  background-color-auto-11-active text-color-auto-20 text-color-auto-00-active">
+      <input type="radio" name="tam" value="md" class="piece-controller">
+      <span class="material-symbols-rounded piece-icon piece-false" translate="no">radio_button_unchecked</span>
+      <span class="material-symbols-rounded piece-icon piece-true"  translate="no">radio_button_checked</span>
+    </label>
+    <label class="piece-surface piece-radio piece-large
+                  background-color-auto-04 background-color-auto-06-hover
+                  background-color-auto-11-active text-color-auto-20 text-color-auto-00-active">
+      <input type="radio" name="tam" value="lg" class="piece-controller">
+      <span class="material-symbols-rounded piece-icon piece-false" translate="no">radio_button_unchecked</span>
+      <span class="material-symbols-rounded piece-icon piece-true"  translate="no">radio_button_checked</span>
+    </label>
+    <label class="piece-surface piece-radio piece-extra-large
+                  background-color-auto-04 background-color-auto-06-hover
+                  background-color-auto-11-active text-color-auto-20 text-color-auto-00-active">
+      <input type="radio" name="tam" value="xl" class="piece-controller">
+      <span class="material-symbols-rounded piece-icon piece-false" translate="no">radio_button_unchecked</span>
+      <span class="material-symbols-rounded piece-icon piece-true"  translate="no">radio_button_checked</span>
+    </label>
+  </div>
+</div>
+
+<!-- 5. Disabled -->
+<div class="section">
+  <h2 class="piece-surface text-color-auto-14">
+    <span class="num piece-surface background-color-auto-05 text-color-auto-16">5</span>
+    Disabled
+  </h2>
+  <div class="row">
+    <label class="piece-surface piece-radio piece-medium piece-disabled
+                  background-color-auto-04 text-color-auto-20">
+      <input type="radio" name="dis" value="a" class="piece-controller">
+      <span class="material-symbols-rounded piece-icon piece-false" translate="no">radio_button_unchecked</span>
+      <span class="material-symbols-rounded piece-icon piece-true"  translate="no">radio_button_checked</span>
+    </label>
+    <label class="piece-surface piece-radio piece-medium piece-disabled
+                  background-color-auto-04 text-color-auto-20">
+      <input type="radio" name="dis" value="b" class="piece-controller" checked>
+      <span class="material-symbols-rounded piece-icon piece-false" translate="no">radio_button_unchecked</span>
+      <span class="material-symbols-rounded piece-icon piece-true"  translate="no">radio_button_checked</span>
+    </label>
+    <label class="piece-surface piece-radio piece-medium piece-disabled
+                  background-color-auto-04 text-color-auto-20">
+      <input type="radio" name="dis" value="c" class="piece-controller">
+      <span class="material-symbols-rounded piece-icon piece-false" translate="no">radio_button_unchecked</span>
+      <span class="material-symbols-rounded piece-icon piece-true"  translate="no">radio_button_checked</span>
+    </label>
+  </div>
+</div>
+
+<script src="../../../npm/js/core/piece-css-generator.js"></script>
+<script src="../../../npm/js/utils/ripple.js"></script>
+<script src="../../../npm/js/core/disabled.js"></script>
+<script>
+  document.getElementById('theme-btn').addEventListener('change', () => {
+    document.body.classList.toggle('piece-dark');
+    document.body.classList.toggle('piece-light');
+  });
+</script>
+</body>
+</html>

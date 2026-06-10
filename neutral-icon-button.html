@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Neutral Kit — icon-button</title>
+  <link rel="stylesheet" href="../../src/css/pieces/pieces.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <style>
+    /* ── Neutral icon-button ───────────────────────────────────────────── */
+    .piece-icon-button.neutral {
+      transition: .2s;
+      width: clamp(var(--button-width), var(--button-width), var(--button-width));
+      height: var(--height);
+      border-radius: var(--border-radius);
+      box-sizing: border-box;
+      display: grid;
+      place-content: center;
+      place-items: center;
+      text-decoration: none;
+      position: relative;
+      cursor: pointer;
+
+      .piece-icon { transition: .2s; font-size: var(--icon-size); }
+      :where(*, * *) { pointer-events: none; user-select: none; }
+      input { display: none; }
+
+      &:not(.piece-actived):not(:has(input:checked)) {
+        .piece-false { display: grid; }
+        .piece-true  { display: none; }
+      }
+      &.piece-actived, &:has(input:checked) {
+        .piece-false { display: none; }
+        .piece-true  { display: grid; }
+        .piece-icon  { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+      }
+      &:active, &.piece-actived, &:has(input:checked) { border-radius: var(--active-radius); }
+
+      &.piece-extra-small {
+        --button-width: 24px; --height: 24px; --icon-size: 14px;
+        --border-radius: 4px; --active-radius: 4px;
+        &.piece-narrow { --button-width: 20px; }
+        &.piece-wide   { --button-width: 32px; }
+      }
+      &.piece-small {
+        --button-width: 28px; --height: 28px; --icon-size: 16px;
+        --border-radius: 4px; --active-radius: 4px;
+        &.piece-narrow { --button-width: 24px; }
+        &.piece-wide   { --button-width: 36px; }
+      }
+      &.piece-medium {
+        --button-width: 32px; --height: 32px; --icon-size: 18px;
+        --border-radius: 4px; --active-radius: 4px;
+        &.piece-narrow { --button-width: 28px; }
+        &.piece-wide   { --button-width: 40px; }
+      }
+      &.piece-large {
+        --button-width: 40px; --height: 40px; --icon-size: 20px;
+        --border-radius: 5px; --active-radius: 5px;
+        &.piece-narrow { --button-width: 32px; }
+        &.piece-wide   { --button-width: 52px; }
+      }
+      &.piece-extra-large {
+        --button-width: 48px; --height: 48px; --icon-size: 22px;
+        --border-radius: 6px; --active-radius: 6px;
+        &.piece-narrow { --button-width: 40px; }
+        &.piece-wide   { --button-width: 64px; }
+      }
+    }
+
+    /* ── Layout — sem opacity em nenhuma regra ─────────────────────────── */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, sans-serif;
+      font-size: 13px;
+      min-height: 100dvh;
+      padding: 32px 24px 64px;
+      display: grid;
+      gap: 48px;
+      align-content: start;
+    }
+
+    h1 { font-size: 20px; font-weight: 700; letter-spacing: -.02em; }
+
+    /* h1 small — cor via piece no HTML */
+    h1 small { font-size: 12px; font-weight: 400; margin-left: 8px; }
+
+    section { display: grid; gap: 16px; }
+
+    /* h2 — cor via piece no HTML */
+    h2 {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      padding-bottom: 6px;
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+    }
+
+    /* note e tag — cor via piece no HTML */
+    .note { font-size: 11px; }
+    .tag  { font-size: 10px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+    .row  { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .col  { display: grid; gap: 6px; align-items: start; }
+
+    .width-table { display: grid; gap: 10px; }
+    .width-row {
+      display: grid;
+      grid-template-columns: 72px repeat(3, 48px);
+      align-items: center;
+      gap: 8px;
+    }
+    .width-row .tag { text-align: right; }
+
+    .piece-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      padding: 3px;
+      border-radius: 8px;
+      border-width: 1px;
+      border-style: solid;
+    }
+
+    .card-demo {
+      padding: 16px;
+      border-radius: 10px;
+      border-width: 1px;
+      border-style: solid;
+      display: grid;
+      gap: 10px;
+    }
+  </style>
+</head>
+
+<body class="piece-surface piece-light piece-triade piece-primary background-color-auto-02 text-color-auto-20">
+
+  <header>
+    <h1>
+      Neutral Kit — icon-button
+      <small class="piece-surface text-color-auto-14">todas as variantes</small>
+    </h1>
+    <p class="note piece-surface text-color-auto-16" style="margin-top:6px">
+      Base: outline (token 06) · hover: fundo 04 sutil · active: fundo 11-12
+    </p>
+  </header>
+
+  <!-- ── 1. TAMANHOS ───────────────────────────────────────────────────── -->
+  <section>
+    <h2 class="piece-surface text-color-auto-14 border-color-auto-06">1 · Tamanhos</h2>
+    <div class="row" style="align-items:flex-end; gap:16px">
+
+      <div class="col">
+        <span class="tag piece-surface text-color-auto-14">xs · 24px</span>
+        <button class="piece-icon-button neutral piece-extra-small piece-toggle piece-surface piece-border
+          border-color-auto-06 background-color-auto-04-hover
+          background-color-auto-11-active background-color-auto-12-hover-active
+          text-color-auto-20 text-color-auto-00-active">
+          <span class="piece-ripple"></span>
+          <span class="material-symbols-rounded piece-icon">bookmark</span>
+        </button>
+      </div>
+
+      <div class="col">
+        <span class="tag piece-surface text-color-auto-14">sm · 28px</span>
+        <button class="piece-icon-button neutral piece-small piece-toggle piece-surface piece-border
+          border-color-auto-06 background-color-auto-04-hover
+          background-color-auto-11-active background-color-auto-12-hover-active
+          text-color-auto-20 text-color-auto-00-active">
+          <span class="piece-ripple"></span>
+          <span class="material-symbols-rounded piece-icon">bookmark</span>
+        </button>
+      </div>
+
+      <div class="col">
+        <span class="tag piece-surface text-color-auto-14">md · 32px</span>
+        <button class="piece-icon-button neutral piece-medium piece-toggle piece-surface piece-border
+          border-color-auto-06 background-color-auto-04-hover
+          background-color-auto-11-active background-color-auto-12-hover-active
+          text-color-auto-20 text-color-auto-00-active">
+          <span class="piece-ripple"></span>
+          <span class="material-symbols-rounded piece-icon">bookmark</span>
+        </button>
+      </div>
+
+      <div class="col">
+        <span class="tag piece-surface text-color-auto-14">lg · 40px</span>
+        <button class="piece-icon-button neutral piece-large piece-toggle piece-surface piece-border
+          border-color-auto-06 background-color-auto-04-hover
+          background-color-auto-11-active background-color-auto-12-hover-active
+          text-color-auto-20 text-color-auto-00-active">
+          <span class="piece-ripple"></span>
+          <span class="material-symbols-rounded piece-icon">bookmark</span>
+        </button>
+      </div>
+
+      <div class="col">
+        <span class="tag piece-surface text-color-auto-14">xl · 48px</span>
+        <button class="piece-icon-button neutral piece-extra-large piece-toggle piece-surface piece-border
+          border-color-auto-06 background-color-auto-04-hover
+          background-color-auto-11-active background-color-auto-12-hover-active
+          text-color-auto-20 text-color-auto-00-active">
+          <span class="piece-ripple"></span>
+          <span class="material-symbols-rounded piece-icon">bookmark</span>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── 2. NARROW / NORMAL / WIDE ─────────────────────────────────────── -->
+  <section>
+    <h2 class="piece-surface text-color-auto-14 border-color-auto-06">2 · Largura — narrow / normal / wide (todos os tamanhos)</h2>
+
+    <div class="width-table">
+
+      <div class="width-row">
+        <span></span>
+        <span class="tag piece-surface text-color-auto-14" style="text-align:center">narrow</span>
+        <span class="tag piece-surface text-color-auto-14" style="text-align:center">normal</span>
+        <span class="tag piece-surface text-color-auto-14" style="text-align:center">wide</span>
+      </div>
+
+      <div class="width-row">
+        <span class="tag piece-surface text-color-auto-14">xs · 24px</span>
+        <button class="piece-icon-button neutral piece-extra-small piece-narrow piece-surface piece-border border-color-auto-06 background-color-auto-04-hover text-color-auto-20"><span class="material-symbols-rounded piece-icon">more_vert</span></button>
+        <button class="piece-icon-button neutral piece-extra-small          piece-surface piece-border border-color-auto-06 background-color-auto-04-hover text-color-auto-20"><span class="material-symbols-rounded piece-icon">more_vert</span></button>
+        <button class="piece-icon-button neutral piece-extra-small piece-wide  piece-surface piece-border border-color-auto-06 background-color-auto-04-hover text-color-auto-20"><span class="material-symbols-rounded piece-icon">more_vert</span></button>
+      </div>
+
+      <div class="width-row">
+        <span class="tag piece-surface text-color-auto-14">sm · 28px</span>
+        <button class="piece-icon-button neutral piece-small piece-narrow piece-surface piece-border border-color-auto-06 background-color-auto-04-hover text-color-auto-20"><span class="material-symbols-rounded piece-icon">more_vert</span></button>
+        <button class="piece-icon-button neutral piece-small          piece-surface piece-border border-color-auto-06 background-color-auto-04-hover text-color-auto-20"><span class="material-symbols-rounded piece-icon">more_vert</span></button>
+        <button class="piece-icon-button neutral piece-small piece-wide  piece-surface piece-border border-color-auto-06 background-color-auto-04-hover text-color-auto-20"><span class="material-symbols-rounded piece-icon">more_vert</span></button>
+      </div>
+
+      <div class="width-row">
+        <span class="tag piece-surface text-color-auto-14">md · 32px</span>
+        <button class="piece-icon-button neutral piece-medium piece-narrow piece-surface piece-border border-color-auto-06 background-color-auto-04-hover text-color-auto-20"><span class="material-symbols-rounded piece-icon">more_vert</span></button>
+        <button class="piece-icon-button neutral piece-medium          piece-surface piece-border border-color-auto-06 background-color-auto-04-hover text-color-auto-20"><span class="material-symbols-rounded piece-icon">more_vert</span></button>
+        <button class="piece-icon-button neutral piece-medium piece-wide  piece-surface piece-border border-color-auto-06 background-color-auto-04-hover text-color-auto-20"><span class="material-symbols-rounded piece-icon">more_vert</span></button>
+      </div>
+
+      <div class="width-row">
+        <span class="tag piece-surface text-color-auto-14">lg · 40px</span>
+        <button class="piece-icon-button neutral piece-large piece-narrow piece-surface piece-border border-color-auto-06 background-color-auto-04-hover text-color-auto-20"><span class="material-symbols-rounded piece-icon">more_vert</span></button>
+        <button class="piece-icon-button neutral piece-large          piece-surface piece-border border-color-auto-06 background-color-auto-04-hover text-color-auto-20"><span class="material-symbols-rounded piece-icon">more_vert</span></button>
+        <button class="piece-icon-button neutral piece-large piece-wide  piece-surface piece-border border-color-auto-06 background-color-auto-04-hover text-color-auto-20"><span class="material-symbols-rounded piece-icon">more_vert</span></button>
+      </div>
+
+      <div class="width-row">
+        <span class="tag piece-surface text-color-auto-14">xl · 48px</span>
+        <button class="piece-icon-button neutral piece-extra-large piece-narrow piece-surface piece-border border-color-auto-06 background-color-auto-04-hover text-color-auto-20"><span class="material-symbols-rounded piece-icon">more_vert</span></button>
+        <button class="piece-icon-button neutral piece-extra-large          piece-surface piece-border border-color-auto-06 background-color-auto-04-hover text-color-auto-20"><span class="material-symbols-rounded piece-icon">more_vert</span></button>
+        <button class="piece-icon-button neutral piece-extra-large piece-wide  piece-surface piece-border border-color-auto-06 background-color-auto-04-hover text-color-auto-20"><span class="material-symbols-rounded piece-icon">more_vert</span></button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── 3. TOGGLE ─────────────────────────────────────────────────────── -->
+  <section>
+    <h2 class="piece-surface text-color-auto-14 border-color-auto-06">3 · Toggle independente (piece-toggle)</h2>
+    <p class="note piece-surface text-color-auto-16">Outline base · active preenche com accent 11-12</p>
+    <div class="row" style="align-items:flex-end; gap:16px">
+
+      <div class="col">
+        <span class="tag piece-surface text-color-auto-14">outline toggle</span>
+        <button class="piece-icon-button neutral piece-medium piece-toggle piece-surface piece-border
+          border-color-auto-06 background-color-auto-04-hover
+          background-color-auto-11-active background-color-auto-12-hover-active
+          text-color-auto-20 text-color-auto-00-active">
+          <span class="piece-ripple"></span>
+          <span class="material-symbols-rounded piece-icon">bookmark</span>
+        </button>
+      </div>
+
+      <div class="col">
+        <span class="tag piece-surface text-color-auto-14">dois ícones</span>
+        <button class="piece-icon-button neutral piece-medium piece-toggle piece-surface piece-border
+          border-color-auto-06 background-color-auto-04-hover
+          background-color-auto-11-active background-color-auto-12-hover-active
+          text-color-auto-20 text-color-auto-00-active">
+          <span class="piece-ripple"></span>
+          <span class="material-symbols-rounded piece-icon piece-false">notifications</span>
+          <span class="material-symbols-rounded piece-icon piece-true">notifications_off</span>
+        </button>
+      </div>
+
+      <div class="col">
+        <span class="tag piece-surface text-color-auto-14">canal → secondary</span>
+        <button class="piece-icon-button neutral piece-medium piece-toggle piece-surface piece-border
+          piece-secondary-active
+          border-color-auto-06 background-color-auto-04-hover
+          background-color-auto-11-active background-color-auto-12-hover-active
+          text-color-auto-20 text-color-auto-00-active">
+          <span class="piece-ripple"></span>
+          <span class="material-symbols-rounded piece-icon">palette</span>
+        </button>
+      </div>
+
+      <div class="col">
+        <span class="tag piece-surface text-color-auto-14">canal → tertiary</span>
+        <button class="piece-icon-button neutral piece-medium piece-toggle piece-surface piece-border
+          piece-tertiary-active
+          border-color-auto-06 background-color-auto-04-hover
+          background-color-auto-11-active background-color-auto-12-hover-active
+          text-color-auto-20 text-color-auto-00-active">
+          <span class="piece-ripple"></span>
+          <span class="material-symbols-rounded piece-icon">palette</span>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── 4. GRUPO SINGLE-SELECT ─────────────────────────────────────────── -->
+  <section>
+    <h2 class="piece-surface text-color-auto-14 border-color-auto-06">4 · Grupo single-select (piece-group)</h2>
+    <p class="note piece-surface text-color-auto-16">Container com fundo 04 distingue o ativo (11) dos não-ativos (transparente)</p>
+    <div class="row" style="gap:16px">
+
+      <div class="col">
+        <span class="tag piece-surface text-color-auto-14">sem fundo no grupo</span>
+        <div class="piece-group piece-surface piece-border border-color-auto-06">
+          <button class="piece-icon-button neutral piece-medium piece-toggle piece-surface
+            background-color-auto-04-hover
+            background-color-auto-11-active background-color-auto-12-hover-active
+            text-color-auto-20 text-color-auto-00-active">
+            <span class="piece-ripple"></span>
+            <span class="material-symbols-rounded piece-icon">format_align_left</span>
+          </button>
+          <button class="piece-icon-button neutral piece-medium piece-toggle piece-surface
+            background-color-auto-04-hover
+            background-color-auto-11-active background-color-auto-12-hover-active
+            text-color-auto-20 text-color-auto-00-active">
+            <span class="piece-ripple"></span>
+            <span class="material-symbols-rounded piece-icon">format_align_center</span>
+          </button>
+          <button class="piece-icon-button neutral piece-medium piece-toggle piece-surface
+            background-color-auto-04-hover
+            background-color-auto-11-active background-color-auto-12-hover-active
+            text-color-auto-20 text-color-auto-00-active">
+            <span class="piece-ripple"></span>
+            <span class="material-symbols-rounded piece-icon">format_align_right</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="col">
+        <span class="tag piece-surface text-color-auto-14">com fundo 04 no grupo</span>
+        <div class="piece-group piece-surface piece-border background-color-auto-04 border-color-auto-06">
+          <button class="piece-icon-button neutral piece-medium piece-toggle piece-surface
+            background-color-auto-11-active background-color-auto-12-hover-active
+            text-color-auto-20 text-color-auto-00-active">
+            <span class="piece-ripple"></span>
+            <span class="material-symbols-rounded piece-icon">grid_view</span>
+          </button>
+          <button class="piece-icon-button neutral piece-medium piece-toggle piece-surface
+            background-color-auto-11-active background-color-auto-12-hover-active
+            text-color-auto-20 text-color-auto-00-active">
+            <span class="piece-ripple"></span>
+            <span class="material-symbols-rounded piece-icon">view_list</span>
+          </button>
+          <button class="piece-icon-button neutral piece-medium piece-toggle piece-surface
+            background-color-auto-11-active background-color-auto-12-hover-active
+            text-color-auto-20 text-color-auto-00-active">
+            <span class="piece-ripple"></span>
+            <span class="material-symbols-rounded piece-icon">table_rows</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── 5. GRUPO MULTI-SELECT ──────────────────────────────────────────── -->
+  <section>
+    <h2 class="piece-surface text-color-auto-14 border-color-auto-06">5 · Grupo multi-select (piece-group piece-multi)</h2>
+    <p class="note piece-surface text-color-auto-16">Cada botão alterna independentemente</p>
+    <div class="row" style="gap:16px">
+
+      <div class="col">
+        <span class="tag piece-surface text-color-auto-14">sem fundo no grupo</span>
+        <div class="piece-group piece-multi piece-surface piece-border border-color-auto-06">
+          <button class="piece-icon-button neutral piece-medium piece-toggle piece-surface
+            background-color-auto-04-hover
+            background-color-auto-11-active background-color-auto-12-hover-active
+            text-color-auto-20 text-color-auto-00-active">
+            <span class="piece-ripple"></span>
+            <span class="material-symbols-rounded piece-icon">format_bold</span>
+          </button>
+          <button class="piece-icon-button neutral piece-medium piece-toggle piece-surface
+            background-color-auto-04-hover
+            background-color-auto-11-active background-color-auto-12-hover-active
+            text-color-auto-20 text-color-auto-00-active">
+            <span class="piece-ripple"></span>
+            <span class="material-symbols-rounded piece-icon">format_italic</span>
+          </button>
+          <button class="piece-icon-button neutral piece-medium piece-toggle piece-surface
+            background-color-auto-04-hover
+            background-color-auto-11-active background-color-auto-12-hover-active
+            text-color-auto-20 text-color-auto-00-active">
+            <span class="piece-ripple"></span>
+            <span class="material-symbols-rounded piece-icon">format_underlined</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="col">
+        <span class="tag piece-surface text-color-auto-14">com fundo 04 no grupo</span>
+        <div class="piece-group piece-multi piece-surface piece-border background-color-auto-04 border-color-auto-06">
+          <button class="piece-icon-button neutral piece-medium piece-toggle piece-surface
+            background-color-auto-11-active background-color-auto-12-hover-active
+            text-color-auto-20 text-color-auto-00-active">
+            <span class="piece-ripple"></span>
+            <span class="material-symbols-rounded piece-icon">format_bold</span>
+          </button>
+          <button class="piece-icon-button neutral piece-medium piece-toggle piece-surface
+            background-color-auto-11-active background-color-auto-12-hover-active
+            text-color-auto-20 text-color-auto-00-active">
+            <span class="piece-ripple"></span>
+            <span class="material-symbols-rounded piece-icon">format_italic</span>
+          </button>
+          <button class="piece-icon-button neutral piece-medium piece-toggle piece-surface
+            background-color-auto-11-active background-color-auto-12-hover-active
+            text-color-auto-20 text-color-auto-00-active">
+            <span class="piece-ripple"></span>
+            <span class="material-symbols-rounded piece-icon">format_underlined</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── 6. RADIO / CHECKBOX ────────────────────────────────────────────── -->
+  <section>
+    <h2 class="piece-surface text-color-auto-14 border-color-auto-06">6 · Radio e Checkbox (formulário real)</h2>
+    <p class="note piece-surface text-color-auto-16">input nativo · sem JS · browser controla exclusividade do radio</p>
+    <div class="row" style="gap:24px">
+
+      <div class="col">
+        <span class="tag piece-surface text-color-auto-14">radio · single-select</span>
+        <div class="row">
+          <label class="piece-icon-button neutral piece-medium piece-surface piece-border
+            border-color-auto-06 background-color-auto-04-hover
+            background-color-auto-11-active background-color-auto-12-hover-active
+            text-color-auto-20 text-color-auto-00-active">
+            <input type="radio" name="demo-radio" value="left" class="piece-controller" checked>
+            <span class="material-symbols-rounded piece-icon">format_align_left</span>
+          </label>
+          <label class="piece-icon-button neutral piece-medium piece-surface piece-border
+            border-color-auto-06 background-color-auto-04-hover
+            background-color-auto-11-active background-color-auto-12-hover-active
+            text-color-auto-20 text-color-auto-00-active">
+            <input type="radio" name="demo-radio" value="center" class="piece-controller">
+            <span class="material-symbols-rounded piece-icon">format_align_center</span>
+          </label>
+          <label class="piece-icon-button neutral piece-medium piece-surface piece-border
+            border-color-auto-06 background-color-auto-04-hover
+            background-color-auto-11-active background-color-auto-12-hover-active
+            text-color-auto-20 text-color-auto-00-active">
+            <input type="radio" name="demo-radio" value="right" class="piece-controller">
+            <span class="material-symbols-rounded piece-icon">format_align_right</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="col">
+        <span class="tag piece-surface text-color-auto-14">checkbox · multi-select</span>
+        <div class="row">
+          <label class="piece-icon-button neutral piece-medium piece-surface piece-border
+            border-color-auto-06 background-color-auto-04-hover
+            background-color-auto-11-active background-color-auto-12-hover-active
+            text-color-auto-20 text-color-auto-00-active">
+            <input type="checkbox" name="demo-cb" value="bold" class="piece-controller">
+            <span class="material-symbols-rounded piece-icon">format_bold</span>
+          </label>
+          <label class="piece-icon-button neutral piece-medium piece-surface piece-border
+            border-color-auto-06 background-color-auto-04-hover
+            background-color-auto-11-active background-color-auto-12-hover-active
+            text-color-auto-20 text-color-auto-00-active">
+            <input type="checkbox" name="demo-cb" value="italic" class="piece-controller" checked>
+            <span class="material-symbols-rounded piece-icon">format_italic</span>
+          </label>
+          <label class="piece-icon-button neutral piece-medium piece-surface piece-border
+            border-color-auto-06 background-color-auto-04-hover
+            background-color-auto-11-active background-color-auto-12-hover-active
+            text-color-auto-20 text-color-auto-00-active">
+            <input type="checkbox" name="demo-cb" value="underline" class="piece-controller">
+            <span class="material-symbols-rounded piece-icon">format_underlined</span>
+          </label>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── 7. DESABILITADO ────────────────────────────────────────────────── -->
+  <section>
+    <h2 class="piece-surface text-color-auto-14 border-color-auto-06">7 · Desabilitado (piece-disabled)</h2>
+    <p class="note piece-surface text-color-auto-16">Nunca usar disabled="true" — sempre .piece-disabled via JS</p>
+    <div class="row">
+      <button class="piece-icon-button neutral piece-medium piece-disabled piece-surface piece-border
+        border-color-auto-06 text-color-auto-20">
+        <span class="piece-ripple"></span>
+        <span class="material-symbols-rounded piece-icon">delete</span>
+      </button>
+      <button class="piece-icon-button neutral piece-large piece-disabled piece-surface piece-border
+        border-color-auto-06 text-color-auto-20">
+        <span class="piece-ripple"></span>
+        <span class="material-symbols-rounded piece-icon">edit</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ── 8. DARK vs LIGHT ───────────────────────────────────────────────── -->
+  <section>
+    <h2 class="piece-surface text-color-auto-14 border-color-auto-06">8 · Dark vs Light — mesmos tokens</h2>
+    <div class="row" style="gap:16px; align-items:start">
+
+      <div class="card-demo piece-surface piece-light background-color-auto-02 border-color-auto-06">
+        <span class="tag piece-surface text-color-auto-14">piece-light</span>
+        <div class="row">
+          <button class="piece-icon-button neutral piece-medium piece-toggle piece-surface piece-border
+            border-color-auto-06 background-color-auto-04-hover
+            background-color-auto-11-active background-color-auto-12-hover-active
+            text-color-auto-20 text-color-auto-00-active">
+            <span class="piece-ripple"></span>
+            <span class="material-symbols-rounded piece-icon piece-false">bookmark</span>
+            <span class="material-symbols-rounded piece-icon piece-true">bookmark</span>
+          </button>
+          <div class="piece-group piece-surface piece-border background-color-auto-04 border-color-auto-06">
+            <button class="piece-icon-button neutral piece-medium piece-toggle piece-surface background-color-auto-11-active background-color-auto-12-hover-active text-color-auto-20 text-color-auto-00-active"><span class="piece-ripple"></span><span class="material-symbols-rounded piece-icon">grid_view</span></button>
+            <button class="piece-icon-button neutral piece-medium piece-toggle piece-surface background-color-auto-11-active background-color-auto-12-hover-active text-color-auto-20 text-color-auto-00-active"><span class="piece-ripple"></span><span class="material-symbols-rounded piece-icon">view_list</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-demo piece-surface piece-dark background-color-auto-02 border-color-auto-06">
+        <span class="tag piece-surface text-color-auto-14">piece-dark</span>
+        <div class="row">
+          <button class="piece-icon-button neutral piece-medium piece-toggle piece-surface piece-border
+            border-color-auto-06 background-color-auto-04-hover
+            background-color-auto-11-active background-color-auto-12-hover-active
+            text-color-auto-20 text-color-auto-00-active">
+            <span class="piece-ripple"></span>
+            <span class="material-symbols-rounded piece-icon piece-false">bookmark</span>
+            <span class="material-symbols-rounded piece-icon piece-true">bookmark</span>
+          </button>
+          <div class="piece-group piece-surface piece-border background-color-auto-04 border-color-auto-06">
+            <button class="piece-icon-button neutral piece-medium piece-toggle piece-surface background-color-auto-11-active background-color-auto-12-hover-active text-color-auto-20 text-color-auto-00-active"><span class="piece-ripple"></span><span class="material-symbols-rounded piece-icon">grid_view</span></button>
+            <button class="piece-icon-button neutral piece-medium piece-toggle piece-surface background-color-auto-11-active background-color-auto-12-hover-active text-color-auto-20 text-color-auto-00-active"><span class="piece-ripple"></span><span class="material-symbols-rounded piece-icon">view_list</span></button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="../../src/js/pieces/ripple.js"></script>
+  <script src="../../src/js/pieces/disabled.js"></script>
+  <script src="../../src/js/pieces/toggle.js"></script>
+  <script src="../../src/js/pieces/piece-css-generator.js"></script>
+
+</body>
+</html>

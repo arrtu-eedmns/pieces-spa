@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Surface — core</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:ital,wght@0,100..700;1,100..700&display=swap">
+<!-- @arrtu/pieces -->
+<link rel="stylesheet" href="../../../npm/css/core/theme.css">
+<link rel="stylesheet" href="../../../npm/css/core/surface.css">
+<link rel="stylesheet" href="../../../npm/css/utils/ripple.css">
+<link rel="stylesheet" href="../../../npm/css/neutral/icon-button.css">
+<style>
+:root {
+  --piece-h: 248;
+  --piece-s: 18%;
+  --piece-a: 100%;
+  --cursor-pointer: pointer;
+  --cursor-default: default;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: "Google Sans Flex", sans-serif; }
+body { min-height: 100dvh; padding: 32px 24px; display: grid; gap: 56px; align-content: start; }
+h1  { font-size: 22px; font-weight: 700; }
+h2  { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
+h3  { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+.num { display: grid; place-content: center; width: 18px; height: 18px; border-radius: 50%; font-size: 10px; font-weight: 700; }
+.section { display: grid; gap: 16px; }
+.sub { display: grid; gap: 8px; }
+.row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.row-top { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 12px; }
+.col { display: grid; gap: 4px; place-items: center; }
+.note { font-size: 11px; }
+.header { display: flex; align-items: center; justify-content: space-between; }
+.theme-hint { font-size: 11px; display: flex; align-items: center; gap: 8px; }
+.divider { height: 1px; border-radius: 1px; }
+
+/* swatches */
+.swatch { width: 52px; height: 52px; border-radius: 6px; }
+.swatch-wide { width: 72px; height: 52px; border-radius: 6px; }
+
+/* demo tiles */
+.tile { width: 120px; min-height: 68px; border-radius: 8px; display: grid; place-items: center; padding: 12px; }
+.tile-sm { width: 80px; height: 52px; border-radius: 6px; display: grid; place-items: center; font-size: 11px; font-weight: 600; }
+
+/* gradiente de fundo para seções de alpha/blur */
+.on-gradient {
+  border-radius: 12px;
+  padding: 24px;
+  background: linear-gradient(135deg,
+    hsl(200, 90%, 45%) 0%,
+    hsl(260, 80%, 50%) 30%,
+    hsl(320, 85%, 52%) 65%,
+    hsl(30, 95%, 55%) 100%
+  );
+  display: grid;
+  gap: 12px;
+}
+
+/* glass cards */
+.glass { border-radius: 10px; padding: 14px 12px; display: grid; place-items: center; text-align: center; gap: 2px; min-width: 88px; }
+
+/* channel demos */
+.channel-trio { display: flex; gap: 4px; }
+.dot { width: 14px; height: 14px; border-radius: 50%; }
+</style>
+</head>
+<body class="piece-surface piece-triade piece-dark background-color-auto-02 text-color-auto-20">
+
+<!-- HEADER -->
+<div class="header">
+  <h1>Surface — core</h1>
+  <div class="theme-hint">
+    <span class="piece-surface text-color-auto-14">dark</span>
+    <button id="theme-btn"
+            class="piece-surface piece-icon-button piece-small piece-toggle
+                   background-color-auto-04 background-color-auto-06-hover
+                   background-color-auto-11-active text-color-auto-20 text-color-auto-00-active">
+      <span class="piece-ripple"></span>
+      <span class="material-symbols-rounded piece-icon piece-false" translate="no">dark_mode</span>
+      <span class="material-symbols-rounded piece-icon piece-true"  translate="no">light_mode</span>
+    </button>
+    <span class="piece-surface text-color-auto-14">light</span>
+  </div>
+</div>
+
+<!-- ─── 1. TOKENS DE BACKGROUND ─────────────────────────────────── -->
+<div class="section">
+  <h2 class="piece-surface text-color-auto-14">
+    <span class="num piece-surface background-color-auto-05 text-color-auto-16">1</span>
+    Tokens de background — hierarquia de elevação
+  </h2>
+  <p class="note piece-surface text-color-auto-14">Token × 4 = % de lightness. No dark inverte automaticamente.</p>
+  <div class="row">
+    <div class="col">
+      <div class="swatch piece-surface background-color-auto-00"></div>
+      <span class="piece-surface text-color-auto-14" style="font-size:10px">00</span>
+    </div>
+    <div class="col">
+      <div class="swatch piece-surface background-color-auto-02"></div>
+      <span class="piece-surface text-color-auto-14" style="font-size:10px">02 ★</span>
+    </div>
+    <div class="col">
+      <div class="swatch piece-surface background-color-auto-03"></div>
+      <span class="piece-surface text-color-auto-14" style="font-size:10px">03</span>
+    </div>
+    <div class="col">
+      <div class="swatch piece-surface background-color-auto-04"></div>
+      <span class="piece-surface text-color-auto-14" style="font-size:10px">04</span>
+    </div>
+    <div class="col">
+      <div class="swatch piece-surface background-color-auto-05"></div>
+      <span class="piece-surface text-color-auto-14" style="font-size:10px">05</span>
+    </div>
+    <div class="col">
+      <div class="swatch piece-surface background-color-auto-06"></div>
+      <span class="piece-surface text-color-auto-14" style="font-size:10px">06</span>
+    </div>
+    <div class="col">
+      <div class="swatch piece-surface background-color-auto-07"></div>
+      <span class="piece-surface text-color-auto-14" style="font-size:10px">07</span>
+    </div>
+    <div class="col">
+      <div class="swatch piece-surface background-color-auto-08"></div>
+      <span class="piece-surface text-color-auto-14" style="font-size:10px">08</span>
+    </div>
+    <div class="col">
+      <div class="swatch piece-surface background-color-auto-10"></div>
+      <span class="piece-surface text-color-auto-14" style="font-size:10px">10</span>
+    </div>
+    <div class="col">
+      <div class="swatch piece-surface background-color-auto-11"></div>
+      <span class="piece-surface text-color-auto-14" style="font-size:10px">11 ★</span>
+    </div>
+    <div class="col">
+      <div class="swatch piece-surface background-color-auto-12"></div>
+      <span class="piece-surface text-color-auto-14" style="font-size:10px">12</span>
+    </div>
+    <div class="col">
+      <div class="swatch piece-surface background-color-auto-14"></div>
+      <span class="piece-surface text-color-auto-14" style="font-size:10px">14</span>
+    </div>
+    <div class="col">
+      <div class="swatch piece-surface background-color-auto-16"></div>
+      <span class="piece-surface text-color-auto-14" style="font-size:10px">16</span>
+    </div>
+    <div class="col">
+      <div class="swatch piece-surface background-color-auto-20"></div>
+      <span class="piece-surface text-color-auto-14" style="font-size:10px">20</span>
+    </div>
+    <div class="col">
+      <div class="swatch piece-surface background-color-auto-22"></div>
+      <span class="piece-surface text-color-auto-14" style="font-size:10px">22</span>
+    </div>
+    <div class="col">
+      <div class="swatch piece-surface background-color-auto-25"></div>
+      <span class="piece-surface text-color-auto-14" style="font-size:10px">25</span>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 2. HIERARQUIA DE TEXTO ────────────────────────────────────── -->
+<div class="section">
+  <h2 class="piece-surface text-color-auto-14">
+    <span class="num piece-surface background-color-auto-05 text-color-auto-16">2</span>
+    Hierarquia de texto — nunca use opacity
+  </h2>
+  <div class="tile piece-surface background-color-auto-04" style="width:100%;max-width:420px;align-items:start;padding:20px;gap:6px;border-radius:10px;">
+    <span class="piece-surface text-color-auto-22" style="font-size:16px;font-weight:700">Título principal — 22</span>
+    <span class="piece-surface text-color-auto-20" style="font-size:14px;font-weight:500">Texto primário — 20 ★</span>
+    <span class="piece-surface text-color-auto-16" style="font-size:13px">Texto secundário / label — 16</span>
+    <span class="piece-surface text-color-auto-14" style="font-size:12px">Texto terciário / placeholder — 14</span>
+    <span class="piece-surface text-color-auto-12" style="font-size:11px">Auxiliar / nota — 12</span>
+    <span class="piece-surface text-color-auto-10" style="font-size:11px">Limite acessível — 10</span>
+  </div>
+</div>
+
+<!-- ─── 3. ESTADOS INTERATIVOS ────────────────────────────────────── -->
+<div class="section">
+  <h2 class="piece-surface text-color-auto-14">
+    <span class="num piece-surface background-color-auto-05 text-color-auto-16">3</span>
+    4 estados — default / hover / active / hover-active
+  </h2>
+
+  <div class="sub">
+    <h3 class="piece-surface text-color-auto-14">Congelados — referência visual</h3>
+    <div class="row-top">
+      <div class="col">
+        <div class="tile-sm piece-surface background-color-auto-04 text-color-auto-20">default</div>
+        <span class="note piece-surface text-color-auto-14">bg-04</span>
+      </div>
+      <div class="col">
+        <div class="tile-sm piece-surface background-color-auto-05 text-color-auto-20">hover</div>
+        <span class="note piece-surface text-color-auto-14">bg-05</span>
+      </div>
+      <div class="col">
+        <div class="tile-sm piece-surface background-color-auto-11 text-color-auto-00">active</div>
+        <span class="note piece-surface text-color-auto-14">bg-11</span>
+      </div>
+      <div class="col">
+        <div class="tile-sm piece-surface background-color-auto-12 text-color-auto-00">hover+active</div>
+        <span class="note piece-surface text-color-auto-14">bg-12</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub">
+    <h3 class="piece-surface text-color-auto-14">Interativo — clique para alternar estado ativo</h3>
+    <div class="row">
+      <button class="piece-surface piece-icon-button piece-medium piece-toggle
+                     background-color-auto-04 background-color-auto-05-hover
+                     background-color-auto-11-active background-color-auto-12-hover-active
+                     text-color-auto-20 text-color-auto-00-active">
+        <span class="piece-ripple"></span>
+        <span class="material-symbols-rounded piece-icon piece-false" translate="no">favorite_border</span>
+        <span class="material-symbols-rounded piece-icon piece-true"  translate="no">favorite</span>
+      </button>
+      <button class="piece-surface piece-icon-button piece-medium piece-toggle
+                     background-color-auto-04 background-color-auto-05-hover
+                     background-color-auto-11-active background-color-auto-12-hover-active
+                     text-color-auto-20 text-color-auto-00-active">
+        <span class="piece-ripple"></span>
+        <span class="material-symbols-rounded piece-icon piece-false" translate="no">bookmark_border</span>
+        <span class="material-symbols-rounded piece-icon piece-true"  translate="no">bookmark</span>
+      </button>
+      <button class="piece-surface piece-icon-button piece-medium piece-toggle
+                     background-color-auto-02 background-color-auto-04-hover
+                     background-color-auto-11-active background-color-auto-12-hover-active
+                     text-color-auto-18 text-color-auto-00-active">
+        <span class="piece-ripple"></span>
+        <span class="material-symbols-rounded piece-icon piece-false" translate="no">star_border</span>
+        <span class="material-symbols-rounded piece-icon piece-true"  translate="no">star</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 4. BORDER ────────────────────────────────────────────────── -->
+<div class="section">
+  <h2 class="piece-surface text-color-auto-14">
+    <span class="num piece-surface background-color-auto-05 text-color-auto-16">4</span>
+    Border — estático, dinâmico e transição
+  </h2>
+  <p class="note piece-surface text-color-auto-14">Nunca use <code>border:</code> shorthand — use <code>piece-border</code> + token de cor.</p>
+  <div class="row-top">
+
+    <div class="col">
+      <div class="tile piece-surface piece-border background-color-auto-04 border-color-auto-06 text-color-auto-16"
+           style="font-size:11px;text-align:center">borda<br>estática</div>
+      <span class="note piece-surface text-color-auto-14">sempre visível</span>
+    </div>
+
+    <div class="col">
+      <div class="tile piece-surface piece-border
+                  background-color-auto-04
+                  border-color-auto-06
+                  piece-border-alpha-00 piece-border-alpha-25-hover
+                  text-color-auto-16"
+           style="font-size:11px;text-align:center">borda<br>hover</div>
+      <span class="note piece-surface text-color-auto-14">aparece no hover</span>
+    </div>
+
+    <div class="col">
+      <div class="tile piece-surface piece-border
+                  background-color-auto-04 background-color-auto-06-hover
+                  border-color-auto-04 border-color-auto-08-hover
+                  text-color-auto-16"
+           style="font-size:11px;text-align:center">borda<br>invisível</div>
+      <span class="note piece-surface text-color-auto-14">mesma cor do bg, muda no hover</span>
+    </div>
+
+    <div class="col">
+      <div class="tile piece-surface piece-border piece-box-shadow
+                  background-color-auto-02
+                  border-color-auto-06
+                  piece-border-alpha-00-hover
+                  box-shadow-color-auto-08
+                  piece-box-shadow-alpha-00
+                  piece-box-shadow-alpha-25-hover
+                  text-color-auto-16"
+           style="font-size:11px;text-align:center">outlined<br>→ elevated</div>
+      <span class="note piece-surface text-color-auto-14">borda some, sombra entra no hover</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- ─── 5. BOX-SHADOW ──────────────────────────────────────────────── -->
+<div class="section">
+  <h2 class="piece-surface text-color-auto-14">
+    <span class="num piece-surface background-color-auto-05 text-color-auto-16">5</span>
+    Box-shadow — estático e dinâmico
+  </h2>
+  <div class="row-top">
+
+    <div class="col">
+      <div class="tile piece-surface piece-box-shadow background-color-auto-04 box-shadow-color-auto-08 text-color-auto-16"
+           style="font-size:11px;text-align:center">sombra<br>estática</div>
+      <span class="note piece-surface text-color-auto-14">sempre visível</span>
+    </div>
+
+    <div class="col">
+      <div class="tile piece-surface piece-box-shadow
+                  background-color-auto-04
+                  box-shadow-color-auto-08
+                  piece-box-shadow-alpha-00 piece-box-shadow-alpha-25-hover
+                  text-color-auto-16"
+           style="font-size:11px;text-align:center">sombra<br>hover</div>
+      <span class="note piece-surface text-color-auto-14">aparece no hover</span>
+    </div>
+
+    <div class="col">
+      <div class="tile piece-surface piece-box-shadow background-color-auto-04
+                  box-shadow-color-auto-06 box-shadow-color-auto-10-hover
+                  text-color-auto-16"
+           style="font-size:11px;text-align:center">sombra<br>cresce</div>
+      <span class="note piece-surface text-color-auto-14">intensifica no hover</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- ─── 6. ALPHA — sobre gradiente ──────────────────────────────── -->
+<div class="section">
+  <h2 class="piece-surface text-color-auto-14">
+    <span class="num piece-surface background-color-auto-05 text-color-auto-16">6</span>
+    Alpha — piece-background-alpha-{token} · token × 4 = % opacidade
+  </h2>
+  <p class="note piece-surface text-color-auto-14">Nunca use <code>opacity:</code> — o alpha por propriedade não vaza para filhos.</p>
+
+  <div class="on-gradient">
+    <h3 style="color:#fff;opacity:.7;font-size:10px;letter-spacing:.06em;text-transform:uppercase">background-color-auto-02 com diferentes alpha</h3>
+    <div class="row">
+      <div class="col">
+        <div class="glass piece-surface background-color-auto-02 piece-background-alpha-04 text-color-auto-20">
+          <span style="font-size:13px;font-weight:700">alpha-04</span>
+          <span style="font-size:10px">16%</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="glass piece-surface background-color-auto-02 piece-background-alpha-06 text-color-auto-20">
+          <span style="font-size:13px;font-weight:700">alpha-06</span>
+          <span style="font-size:10px">24%</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="glass piece-surface background-color-auto-02 piece-background-alpha-08 text-color-auto-20">
+          <span style="font-size:13px;font-weight:700">alpha-08</span>
+          <span style="font-size:10px">32%</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="glass piece-surface background-color-auto-02 piece-background-alpha-12 text-color-auto-20">
+          <span style="font-size:13px;font-weight:700">alpha-12</span>
+          <span style="font-size:10px">48%</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="glass piece-surface background-color-auto-02 piece-background-alpha-16 text-color-auto-20">
+          <span style="font-size:13px;font-weight:700">alpha-16</span>
+          <span style="font-size:10px">64%</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="glass piece-surface background-color-auto-02 piece-background-alpha-20 text-color-auto-20">
+          <span style="font-size:13px;font-weight:700">alpha-20</span>
+          <span style="font-size:10px">80%</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="glass piece-surface background-color-auto-02 piece-background-alpha-25 text-color-auto-20">
+          <span style="font-size:13px;font-weight:700">alpha-25</span>
+          <span style="font-size:10px">100%</span>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="color:#fff;opacity:.7;font-size:10px;letter-spacing:.06em;text-transform:uppercase;margin-top:8px">Aplicado em outros tokens e propriedades</h3>
+    <div class="row">
+      <div class="col">
+        <div class="glass piece-surface background-color-auto-04 piece-background-alpha-10 text-color-auto-20">
+          <span style="font-size:11px;font-weight:700">bg-04</span>
+          <span style="font-size:10px">alpha-10</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="glass piece-surface background-color-auto-11 piece-background-alpha-10 text-color-auto-00">
+          <span style="font-size:11px;font-weight:700">bg-11</span>
+          <span style="font-size:10px">alpha-10</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="glass piece-surface piece-border background-color-auto-02 piece-background-alpha-04 border-color-auto-25 piece-border-alpha-08 text-color-auto-20">
+          <span style="font-size:11px;font-weight:700">bg+borda</span>
+          <span style="font-size:10px">alpha combinado</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="glass piece-surface background-color-auto-02 piece-background-alpha-08
+                    background-color-auto-04-hover piece-background-alpha-14-hover
+                    text-color-auto-20" style="cursor:pointer">
+          <span style="font-size:11px;font-weight:700">alpha hover</span>
+          <span style="font-size:10px">passe o mouse</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 7. BLUR — efeito glass ────────────────────────────────────── -->
+<div class="section">
+  <h2 class="piece-surface text-color-auto-14">
+    <span class="num piece-surface background-color-auto-05 text-color-auto-16">7</span>
+    Blur — efeito glass · token × 2 = pixels
+  </h2>
+  <p class="note piece-surface text-color-auto-14">Nunca use <code>backdrop-filter</code> diretamente — use <code>piece-blur-{token}</code>.</p>
+
+  <div class="on-gradient">
+    <h3 style="color:#fff;opacity:.7;font-size:10px;letter-spacing:.06em;text-transform:uppercase">piece-background-alpha-06 com blur crescente</h3>
+    <div class="row">
+      <div class="col">
+        <div class="glass piece-surface piece-blur-02 background-color-auto-02 piece-background-alpha-06 text-color-auto-20">
+          <span style="font-size:13px;font-weight:700">blur-02</span>
+          <span style="font-size:10px">4px</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="glass piece-surface piece-blur-04 background-color-auto-02 piece-background-alpha-06 text-color-auto-20">
+          <span style="font-size:13px;font-weight:700">blur-04</span>
+          <span style="font-size:10px">8px</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="glass piece-surface piece-blur-06 background-color-auto-02 piece-background-alpha-06 text-color-auto-20">
+          <span style="font-size:13px;font-weight:700">blur-06</span>
+          <span style="font-size:10px">12px</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="glass piece-surface piece-blur-08 background-color-auto-02 piece-background-alpha-06 text-color-auto-20">
+          <span style="font-size:13px;font-weight:700">blur-08</span>
+          <span style="font-size:10px">16px</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="glass piece-surface piece-blur-10 background-color-auto-02 piece-background-alpha-06 text-color-auto-20">
+          <span style="font-size:13px;font-weight:700">blur-10</span>
+          <span style="font-size:10px">20px</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="glass piece-surface piece-blur-12 background-color-auto-02 piece-background-alpha-06 text-color-auto-20">
+          <span style="font-size:13px;font-weight:700">blur-12</span>
+          <span style="font-size:10px">24px</span>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="color:#fff;opacity:.7;font-size:10px;letter-spacing:.06em;text-transform:uppercase;margin-top:8px">Glass combinado — blur fixo (06) com alpha variando</h3>
+    <div class="row">
+      <div class="col">
+        <div class="glass piece-surface piece-blur-06 background-color-auto-02 piece-background-alpha-02 text-color-auto-20">
+          <span style="font-size:11px;font-weight:700">ultra leve</span>
+          <span style="font-size:10px">alpha-02</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="glass piece-surface piece-blur-06 background-color-auto-02 piece-background-alpha-04 text-color-auto-20">
+          <span style="font-size:11px;font-weight:700">leve</span>
+          <span style="font-size:10px">alpha-04</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="glass piece-surface piece-blur-06 background-color-auto-02 piece-background-alpha-08 text-color-auto-20">
+          <span style="font-size:11px;font-weight:700">médio</span>
+          <span style="font-size:10px">alpha-08</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="glass piece-surface piece-blur-06 background-color-auto-02 piece-background-alpha-14 text-color-auto-20">
+          <span style="font-size:11px;font-weight:700">denso</span>
+          <span style="font-size:10px">alpha-14</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="glass piece-surface piece-blur-06 piece-border background-color-auto-02 piece-background-alpha-06 border-color-auto-25 piece-border-alpha-06 text-color-auto-20">
+          <span style="font-size:11px;font-weight:700">+ borda</span>
+          <span style="font-size:10px">glass completo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 8. CANAIS DE COR ───────────────────────────────────────────── -->
+<div class="section">
+  <h2 class="piece-surface text-color-auto-14">
+    <span class="num piece-surface background-color-auto-05 text-color-auto-16">8</span>
+    Canais de cor — primary / secondary / tertiary
+  </h2>
+  <p class="note piece-surface text-color-auto-14">Troca o hue do elemento e filhos. Os tokens de lightness permanecem os mesmos.</p>
+
+  <div class="row-top">
+    <div class="sub" style="gap:6px">
+      <h3 class="piece-surface text-color-auto-14">primary (herdado)</h3>
+      <div class="row" style="gap:4px">
+        <div class="swatch piece-surface background-color-auto-11"></div>
+        <div class="swatch piece-surface background-color-auto-06"></div>
+        <div class="swatch piece-surface background-color-auto-02"></div>
+      </div>
+    </div>
+    <div class="sub" style="gap:6px">
+      <h3 class="piece-surface text-color-auto-14">piece-secondary</h3>
+      <div class="row piece-secondary" style="gap:4px">
+        <div class="swatch piece-surface background-color-auto-11"></div>
+        <div class="swatch piece-surface background-color-auto-06"></div>
+        <div class="swatch piece-surface background-color-auto-02"></div>
+      </div>
+    </div>
+    <div class="sub" style="gap:6px">
+      <h3 class="piece-surface text-color-auto-14">piece-tertiary</h3>
+      <div class="row piece-tertiary" style="gap:4px">
+        <div class="swatch piece-surface background-color-auto-11"></div>
+        <div class="swatch piece-surface background-color-auto-06"></div>
+        <div class="swatch piece-surface background-color-auto-02"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub">
+    <h3 class="piece-surface text-color-auto-14">Botões — mesmo componente, canais diferentes</h3>
+    <div class="row">
+      <button class="piece-surface piece-icon-button piece-medium piece-toggle
+                     background-color-auto-06 background-color-auto-07-hover
+                     background-color-auto-11-active background-color-auto-12-hover-active
+                     text-color-auto-20 text-color-auto-00-active">
+        <span class="piece-ripple"></span>
+        <span class="material-symbols-rounded piece-icon" translate="no">bolt</span>
+      </button>
+      <button class="piece-secondary piece-surface piece-icon-button piece-medium piece-toggle
+                     background-color-auto-06 background-color-auto-07-hover
+                     background-color-auto-11-active background-color-auto-12-hover-active
+                     text-color-auto-20 text-color-auto-00-active">
+        <span class="piece-ripple"></span>
+        <span class="material-symbols-rounded piece-icon" translate="no">bolt</span>
+      </button>
+      <button class="piece-tertiary piece-surface piece-icon-button piece-medium piece-toggle
+                     background-color-auto-06 background-color-auto-07-hover
+                     background-color-auto-11-active background-color-auto-12-hover-active
+                     text-color-auto-20 text-color-auto-00-active">
+        <span class="piece-ripple"></span>
+        <span class="material-symbols-rounded piece-icon" translate="no">bolt</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 9. CANAIS POR ESTADO ──────────────────────────────────────── -->
+<div class="section">
+  <h2 class="piece-surface text-color-auto-14">
+    <span class="num piece-surface background-color-auto-05 text-color-auto-16">9</span>
+    Canais por estado — hue muda conforme interação
+  </h2>
+  <p class="note piece-surface text-color-auto-14">Clique para ver o canal mudar junto com a lightness.</p>
+  <div class="row">
+    <!-- muda para secondary no active -->
+    <button class="piece-surface piece-icon-button piece-medium piece-toggle
+                   piece-secondary-active
+                   background-color-auto-06 background-color-auto-07-hover
+                   background-color-auto-11-active background-color-auto-12-hover-active
+                   text-color-auto-20 text-color-auto-00-active">
+      <span class="piece-ripple"></span>
+      <span class="material-symbols-rounded piece-icon piece-false" translate="no">radio_button_unchecked</span>
+      <span class="material-symbols-rounded piece-icon piece-true"  translate="no">check_circle</span>
+    </button>
+
+    <!-- muda para tertiary no active -->
+    <button class="piece-surface piece-icon-button piece-medium piece-toggle
+                   piece-tertiary-active
+                   background-color-auto-06 background-color-auto-07-hover
+                   background-color-auto-11-active background-color-auto-12-hover-active
+                   text-color-auto-20 text-color-auto-00-active">
+      <span class="piece-ripple"></span>
+      <span class="material-symbols-rounded piece-icon piece-false" translate="no">bookmark_border</span>
+      <span class="material-symbols-rounded piece-icon piece-true"  translate="no">bookmark</span>
+    </button>
+
+    <!-- muda para secondary no hover -->
+    <button class="piece-surface piece-icon-button piece-medium piece-toggle
+                   piece-secondary-hover
+                   background-color-auto-04 background-color-auto-05-hover
+                   background-color-auto-11-active background-color-auto-12-hover-active
+                   text-color-auto-18 text-color-auto-20-hover text-color-auto-00-active">
+      <span class="piece-ripple"></span>
+      <span class="material-symbols-rounded piece-icon" translate="no">palette</span>
+    </button>
+
+    <!-- combo: secondary no hover, tertiary no active -->
+    <button class="piece-surface piece-icon-button piece-medium piece-toggle
+                   piece-secondary-hover piece-tertiary-active
+                   background-color-auto-04 background-color-auto-06-hover
+                   background-color-auto-11-active background-color-auto-12-hover-active
+                   text-color-auto-18 text-color-auto-00-active">
+      <span class="piece-ripple"></span>
+      <span class="material-symbols-rounded piece-icon piece-false" translate="no">star_border</span>
+      <span class="material-symbols-rounded piece-icon piece-true"  translate="no">star</span>
+    </button>
+  </div>
+</div>
+
+<!-- ─── 10. HARMONIAS ─────────────────────────────────────────────── -->
+<div class="section">
+  <h2 class="piece-surface text-color-auto-14">
+    <span class="num piece-surface background-color-auto-05 text-color-auto-16">10</span>
+    Harmonias — relação entre primary / secondary / tertiary
+  </h2>
+
+  <div class="row-top" style="gap:24px">
+
+    <div class="sub piece-triade">
+      <h3 class="piece-surface text-color-auto-14">piece-triade</h3>
+      <p class="note piece-surface text-color-auto-14" style="font-size:10px">+120° / +240°</p>
+      <div class="row" style="gap:4px">
+        <div class="swatch piece-surface background-color-auto-11" style="width:32px;height:32px;border-radius:50%"></div>
+        <div class="swatch piece-secondary piece-surface background-color-auto-11" style="width:32px;height:32px;border-radius:50%"></div>
+        <div class="swatch piece-tertiary piece-surface background-color-auto-11" style="width:32px;height:32px;border-radius:50%"></div>
+      </div>
+    </div>
+
+    <div class="sub piece-analoga">
+      <h3 class="piece-surface text-color-auto-14">piece-analoga</h3>
+      <p class="note piece-surface text-color-auto-14" style="font-size:10px">+30° / +90°</p>
+      <div class="row" style="gap:4px">
+        <div class="swatch piece-surface background-color-auto-11" style="width:32px;height:32px;border-radius:50%"></div>
+        <div class="swatch piece-secondary piece-surface background-color-auto-11" style="width:32px;height:32px;border-radius:50%"></div>
+        <div class="swatch piece-tertiary piece-surface background-color-auto-11" style="width:32px;height:32px;border-radius:50%"></div>
+      </div>
+    </div>
+
+    <div class="sub piece-complementar">
+      <h3 class="piece-surface text-color-auto-14">piece-complementar</h3>
+      <p class="note piece-surface text-color-auto-14" style="font-size:10px">+120° / +150°</p>
+      <div class="row" style="gap:4px">
+        <div class="swatch piece-surface background-color-auto-11" style="width:32px;height:32px;border-radius:50%"></div>
+        <div class="swatch piece-secondary piece-surface background-color-auto-11" style="width:32px;height:32px;border-radius:50%"></div>
+        <div class="swatch piece-tertiary piece-surface background-color-auto-11" style="width:32px;height:32px;border-radius:50%"></div>
+      </div>
+    </div>
+
+    <div class="sub piece-mono">
+      <h3 class="piece-surface text-color-auto-14">piece-mono</h3>
+      <p class="note piece-surface text-color-auto-14" style="font-size:10px">primary = secondary = tertiary</p>
+      <div class="row" style="gap:4px">
+        <div class="swatch piece-surface background-color-auto-11" style="width:32px;height:32px;border-radius:50%"></div>
+        <div class="swatch piece-secondary piece-surface background-color-auto-11" style="width:32px;height:32px;border-radius:50%"></div>
+        <div class="swatch piece-tertiary piece-surface background-color-auto-11" style="width:32px;height:32px;border-radius:50%"></div>
+      </div>
+    </div>
+
+    <div class="sub piece-art">
+      <h3 class="piece-surface text-color-auto-14">piece-art</h3>
+      <p class="note piece-surface text-color-auto-14" style="font-size:10px">purple / blue / violet (fixo)</p>
+      <div class="row" style="gap:4px">
+        <div class="swatch piece-surface background-color-auto-11" style="width:32px;height:32px;border-radius:50%"></div>
+        <div class="swatch piece-secondary piece-surface background-color-auto-11" style="width:32px;height:32px;border-radius:50%"></div>
+        <div class="swatch piece-tertiary piece-surface background-color-auto-11" style="width:32px;height:32px;border-radius:50%"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ─── 11. TEMAS TRAVADOS ─────────────────────────────────────────── -->
+<div class="section">
+  <h2 class="piece-surface text-color-auto-14">
+    <span class="num piece-surface background-color-auto-05 text-color-auto-16">11</span>
+    Temas travados — auto / light / dark / inverse
+  </h2>
+  <p class="note piece-surface text-color-auto-14">Altere o tema global acima para ver light/dark travados não mudarem; inverse sempre inverte.</p>
+
+  <div class="row-top">
+    <div class="col">
+      <div class="tile piece-surface background-color-auto-04 text-color-auto-20" style="font-size:11px;text-align:center">
+        auto<br><span class="piece-surface text-color-auto-14" style="font-size:10px">segue tema global</span>
+      </div>
+      <span class="note piece-surface text-color-auto-14">auto</span>
+    </div>
+
+    <div class="col">
+      <div class="tile piece-surface background-color-light-04 text-color-light-20" style="font-size:11px;text-align:center">
+        light<br><span class="piece-surface text-color-light-14" style="font-size:10px">sempre claro</span>
+      </div>
+      <span class="note piece-surface text-color-auto-14">light travado</span>
+    </div>
+
+    <div class="col">
+      <div class="tile piece-surface background-color-dark-04 text-color-dark-20" style="font-size:11px;text-align:center">
+        dark<br><span class="piece-surface text-color-dark-14" style="font-size:10px">sempre escuro</span>
+      </div>
+      <span class="note piece-surface text-color-auto-14">dark travado</span>
+    </div>
+
+    <div class="col">
+      <div class="tile piece-inverse piece-surface background-color-auto-04 text-color-auto-20" style="font-size:11px;text-align:center">
+        inverse<br><span class="piece-surface text-color-auto-14" style="font-size:10px">sempre oposto</span>
+      </div>
+      <span class="note piece-surface text-color-auto-14">inverse</span>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 12. DISABLED ───────────────────────────────────────────────── -->
+<div class="section">
+  <h2 class="piece-surface text-color-auto-14">
+    <span class="num piece-surface background-color-auto-05 text-color-auto-16">12</span>
+    Disabled — piece-disabled (nunca usar atributo HTML disabled)
+  </h2>
+  <p class="note piece-surface text-color-auto-14">Bloqueia eventos, aplica cursor not-allowed, propaga cores fixas para filhos .piece-surface.</p>
+
+  <div class="row">
+    <button class="piece-surface piece-icon-button piece-medium
+                   background-color-auto-04 background-color-auto-05-hover
+                   background-color-auto-11-active text-color-auto-20">
+      <span class="piece-ripple"></span>
+      <span class="material-symbols-rounded piece-icon" translate="no">settings</span>
+    </button>
+
+    <button class="piece-surface piece-icon-button piece-medium piece-disabled
+                   background-color-auto-04 text-color-auto-20">
+      <span class="piece-ripple"></span>
+      <span class="material-symbols-rounded piece-icon" translate="no">settings</span>
+    </button>
+
+    <button class="piece-surface piece-icon-button piece-medium piece-toggle piece-actived
+                   background-color-auto-04 background-color-auto-05-hover
+                   background-color-auto-11-active background-color-auto-12-hover-active
+                   text-color-auto-20 text-color-auto-00-active">
+      <span class="piece-ripple"></span>
+      <span class="material-symbols-rounded piece-icon" translate="no">star</span>
+    </button>
+
+    <button class="piece-surface piece-icon-button piece-medium piece-disabled piece-actived
+                   background-color-auto-04 text-color-auto-20">
+      <span class="piece-ripple"></span>
+      <span class="material-symbols-rounded piece-icon" translate="no">star</span>
+    </button>
+  </div>
+</div>
+
+<script src="../../../npm/js/core/piece-css-generator.js"></script>
+<script src="../../../npm/js/utils/ripple.js"></script>
+<script src="../../../npm/js/core/toggle.js"></script>
+<script src="../../../npm/js/core/disabled.js"></script>
+<script>
+  document.getElementById('theme-btn').addEventListener('click', () => {
+    document.body.classList.toggle('piece-dark');
+    document.body.classList.toggle('piece-light');
+  });
+</script>
+</body>
+</html>

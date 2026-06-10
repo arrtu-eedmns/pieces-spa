@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Button — neutral kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:ital,wght@0,100..700;1,100..700&display=swap">
+<!-- @arrtu/pieces -->
+<link rel="stylesheet" href="../../../npm/css/core/theme.css">
+<link rel="stylesheet" href="../../../npm/css/core/surface.css">
+<link rel="stylesheet" href="../../../npm/css/utils/ripple.css">
+<link rel="stylesheet" href="../../../npm/css/neutral/button.css">
+<link rel="stylesheet" href="../../../npm/css/neutral/group.css">
+<link rel="stylesheet" href="../../../npm/css/neutral/icon-button.css">
+<style>
+:root {
+  --piece-h: 248;
+  --piece-s: 16%;
+  --piece-a: 100%;
+  --cursor-pointer: pointer;
+  --cursor-default: default;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: "Google Sans Flex", sans-serif; }
+body { min-height: 100dvh; padding: 32px 24px; display: grid; gap: 48px; align-content: start; }
+h1  { font-size: 22px; font-weight: 700; }
+h2  { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
+.num { display: grid; place-content: center; width: 18px; height: 18px; border-radius: 50%; font-size: 10px; font-weight: 700; }
+.section { display: grid; gap: 14px; }
+.row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.header { display: flex; align-items: center; justify-content: space-between; }
+.theme-hint { font-size: 11px; display: flex; align-items: center; gap: 8px; }
+</style>
+</head>
+<body class="piece-surface piece-dark background-color-auto-02 text-color-auto-20">
+
+<div class="header">
+  <h1>Button — neutral kit</h1>
+  <div class="theme-hint">
+    <span class="piece-surface text-color-auto-14">dark</span>
+    <button id="theme-btn" class="piece-surface piece-icon-button piece-small piece-toggle background-color-auto-04 background-color-auto-06-hover background-color-auto-11-active text-color-auto-20 text-color-auto-00-active">
+      <span class="piece-ripple"></span>
+      <span class="material-symbols-rounded piece-icon piece-false" translate="no">dark_mode</span>
+      <span class="material-symbols-rounded piece-icon piece-true"  translate="no">light_mode</span>
+    </button>
+    <span class="piece-surface text-color-auto-14">light</span>
+  </div>
+</div>
+
+<div class="section"><h2 class="piece-surface text-color-auto-14"><span class="num piece-surface background-color-auto-05 text-color-auto-16">1</span>Tamanhos — só label</h2><div class="row"><button class="piece-surface piece-button piece-extra-small background-color-auto-04 background-color-auto-06-hover text-color-auto-20"><span class="piece-ripple"></span><span class="piece-label">Extra Small</span></button><button class="piece-surface piece-button piece-small background-color-auto-04 background-color-auto-06-hover text-color-auto-20"><span class="piece-ripple"></span><span class="piece-label">Small</span></button><button class="piece-surface piece-button piece-medium background-color-auto-04 background-color-auto-06-hover text-color-auto-20"><span class="piece-ripple"></span><span class="piece-label">Medium</span></button><button class="piece-surface piece-button piece-large background-color-auto-04 background-color-auto-06-hover text-color-auto-20"><span class="piece-ripple"></span><span class="piece-label">Large</span></button><button class="piece-surface piece-button piece-extra-large background-color-auto-04 background-color-auto-06-hover text-color-auto-20"><span class="piece-ripple"></span><span class="piece-label">Extra Large</span></button></div></div>
+
+<div class="section"><h2 class="piece-surface text-color-auto-14"><span class="num piece-surface background-color-auto-05 text-color-auto-16">2</span>Tamanhos — ícone + label</h2><div class="row"><button class="piece-surface piece-button piece-extra-small background-color-auto-04 background-color-auto-06-hover text-color-auto-20"><span class="piece-ripple"></span><span class="material-symbols-rounded piece-icon" translate="no">star</span><span class="piece-label">Extra Small</span></button><button class="piece-surface piece-button piece-small background-color-auto-04 background-color-auto-06-hover text-color-auto-20"><span class="piece-ripple"></span><span class="material-symbols-rounded piece-icon" translate="no">star</span><span class="piece-label">Small</span></button><button class="piece-surface piece-button piece-medium background-color-auto-04 background-color-auto-06-hover text-color-auto-20"><span class="piece-ripple"></span><span class="material-symbols-rounded piece-icon" translate="no">star</span><span class="piece-label">Medium</span></button><button class="piece-surface piece-button piece-large background-color-auto-04 background-color-auto-06-hover text-color-auto-20"><span class="piece-ripple"></span><span class="material-symbols-rounded piece-icon" translate="no">star</span><span class="piece-label">Large</span></button><button class="piece-surface piece-button piece-extra-large background-color-auto-04 background-color-auto-06-hover text-color-auto-20"><span class="piece-ripple"></span><span class="material-symbols-rounded piece-icon" translate="no">star</span><span class="piece-label">Extra Large</span></button></div></div>
+
+<div class="section"><h2 class="piece-surface text-color-auto-14"><span class="num piece-surface background-color-auto-05 text-color-auto-16">3</span>Hierarquia visual</h2><div class="row"><button class="piece-surface piece-button piece-medium background-color-auto-02 background-color-auto-04-hover text-color-auto-18"><span class="piece-ripple"></span><span class="piece-label">Text</span></button><button class="piece-surface piece-button piece-medium piece-border background-color-auto-02 background-color-auto-04-hover border-color-auto-06 text-color-auto-18"><span class="piece-ripple"></span><span class="piece-label">Outlined</span></button><button class="piece-surface piece-button piece-medium background-color-auto-05 background-color-auto-07-hover text-color-auto-18"><span class="piece-ripple"></span><span class="piece-label">Tonal</span></button><button class="piece-surface piece-button piece-medium background-color-auto-11 background-color-auto-12-hover text-color-auto-00"><span class="piece-ripple"></span><span class="piece-label">Filled</span></button><button class="piece-surface piece-button piece-medium piece-box-shadow background-color-auto-03 background-color-auto-05-hover box-shadow-color-auto-08 text-color-auto-18"><span class="piece-ripple"></span><span class="piece-label">Elevated</span></button></div></div>
+
+<div class="section"><h2 class="piece-surface text-color-auto-14"><span class="num piece-surface background-color-auto-05 text-color-auto-16">4</span>Toggle</h2><div class="row"><button class="piece-surface piece-button piece-medium piece-toggle background-color-auto-04 background-color-auto-06-hover background-color-auto-11-active background-color-auto-12-hover-active text-color-auto-20 text-color-auto-00-active"><span class="piece-ripple"></span><span class="material-symbols-rounded piece-icon" translate="no">bookmark</span><span class="piece-label">Salvar</span></button><button class="piece-surface piece-button piece-medium piece-toggle background-color-auto-04 background-color-auto-06-hover background-color-auto-11-active background-color-auto-12-hover-active text-color-auto-20 text-color-auto-00-active"><span class="piece-ripple"></span><span class="material-symbols-rounded piece-icon" translate="no">notifications</span><span class="piece-label">Alertas</span></button></div></div>
+
+<div class="section"><h2 class="piece-surface text-color-auto-14"><span class="num piece-surface background-color-auto-05 text-color-auto-16">5</span>piece-true / piece-false</h2><div class="row"><button class="piece-surface piece-button piece-medium piece-toggle background-color-auto-04 background-color-auto-06-hover background-color-auto-11-active background-color-auto-12-hover-active text-color-auto-20 text-color-auto-00-active"><span class="piece-ripple"></span><span class="material-symbols-rounded piece-icon piece-false" translate="no">favorite_border</span><span class="material-symbols-rounded piece-icon piece-true" translate="no">favorite</span><span class="piece-label piece-false">Curtir</span><span class="piece-label piece-true">Curtido</span></button><button class="piece-surface piece-button piece-medium piece-toggle background-color-auto-04 background-color-auto-06-hover background-color-auto-11-active text-color-auto-20"><span class="piece-ripple"></span><span class="material-symbols-rounded piece-icon piece-false" translate="no">visibility</span><span class="material-symbols-rounded piece-icon piece-true" translate="no">visibility_off</span><span class="piece-label">Visibilidade</span></button></div></div>
+
+<div class="section"><h2 class="piece-surface text-color-auto-14"><span class="num piece-surface background-color-auto-05 text-color-auto-16">6</span>Group — single-select</h2><div class="row"><div class="piece-group"><button class="piece-surface piece-button piece-medium piece-toggle background-color-auto-04 background-color-auto-06-hover background-color-auto-11-active background-color-auto-12-hover-active text-color-auto-20 text-color-auto-00-active"><span class="piece-ripple"></span><span class="material-symbols-rounded piece-icon" translate="no">view_list</span><span class="piece-label">Lista</span></button><button class="piece-surface piece-button piece-medium piece-toggle background-color-auto-04 background-color-auto-06-hover background-color-auto-11-active background-color-auto-12-hover-active text-color-auto-20 text-color-auto-00-active"><span class="piece-ripple"></span><span class="material-symbols-rounded piece-icon" translate="no">grid_view</span><span class="piece-label">Grade</span></button><button class="piece-surface piece-button piece-medium piece-toggle background-color-auto-04 background-color-auto-06-hover background-color-auto-11-active background-color-auto-12-hover-active text-color-auto-20 text-color-auto-00-active"><span class="piece-ripple"></span><span class="material-symbols-rounded piece-icon" translate="no">splitscreen</span><span class="piece-label">Dividido</span></button></div></div></div>
+
+<div class="section"><h2 class="piece-surface text-color-auto-14"><span class="num piece-surface background-color-auto-05 text-color-auto-16">7</span>Group — multi-select</h2><div class="row"><div class="piece-group piece-multi"><button class="piece-surface piece-button piece-medium piece-toggle background-color-auto-04 background-color-auto-06-hover background-color-auto-11-active background-color-auto-12-hover-active text-color-auto-20 text-color-auto-00-active"><span class="piece-ripple"></span><span class="material-symbols-rounded piece-icon" translate="no">format_bold</span><span class="piece-label">Bold</span></button><button class="piece-surface piece-button piece-medium piece-toggle background-color-auto-04 background-color-auto-06-hover background-color-auto-11-active background-color-auto-12-hover-active text-color-auto-20 text-color-auto-00-active"><span class="piece-ripple"></span><span class="material-symbols-rounded piece-icon" translate="no">format_italic</span><span class="piece-label">Italic</span></button><button class="piece-surface piece-button piece-medium piece-toggle background-color-auto-04 background-color-auto-06-hover background-color-auto-11-active background-color-auto-12-hover-active text-color-auto-20 text-color-auto-00-active"><span class="piece-ripple"></span><span class="material-symbols-rounded piece-icon" translate="no">format_underlined</span><span class="piece-label">Underline</span></button></div></div></div>
+
+<div class="section"><h2 class="piece-surface text-color-auto-14"><span class="num piece-surface background-color-auto-05 text-color-auto-16">8</span>Group — misto button + icon-button</h2><div class="row"><div class="piece-group"><button class="piece-surface piece-icon-button piece-medium piece-toggle background-color-auto-04 background-color-auto-06-hover background-color-auto-11-active text-color-auto-20 text-color-auto-00-active"><span class="piece-ripple"></span><span class="material-symbols-rounded piece-icon" translate="no">format_align_left</span></button><button class="piece-surface piece-button piece-medium piece-toggle background-color-auto-04 background-color-auto-06-hover background-color-auto-11-active background-color-auto-12-hover-active text-color-auto-20 text-color-auto-00-active"><span class="piece-ripple"></span><span class="piece-label">Centro</span></button><button class="piece-surface piece-icon-button piece-medium piece-toggle background-color-auto-04 background-color-auto-06-hover background-color-auto-11-active text-color-auto-20 text-color-auto-00-active"><span class="piece-ripple"></span><span class="material-symbols-rounded piece-icon" translate="no">format_align_right</span></button></div></div></div>
+
+<div class="section"><h2 class="piece-surface text-color-auto-14"><span class="num piece-surface background-color-auto-05 text-color-auto-16">9</span>Disabled</h2><div class="row"><button class="piece-surface piece-button piece-medium piece-disabled background-color-auto-04 text-color-auto-20"><span class="piece-ripple"></span><span class="piece-label">Disabled</span></button><button class="piece-surface piece-button piece-medium piece-disabled piece-border background-color-auto-02 border-color-auto-06 text-color-auto-18"><span class="piece-ripple"></span><span class="piece-label">Outlined Disabled</span></button></div></div>
+
+<div class="section"><h2 class="piece-surface text-color-auto-14"><span class="num piece-surface background-color-auto-05 text-color-auto-16">10</span>Como link &lt;a&gt;</h2><div class="row"><a href="#" class="piece-surface piece-button piece-medium background-color-auto-11 background-color-auto-12-hover text-color-auto-00"><span class="piece-ripple"></span><span class="material-symbols-rounded piece-icon" translate="no">open_in_new</span><span class="piece-label">Abrir link</span></a></div></div>
+
+<script src="../../../npm/js/core/piece-css-generator.js"></script>
+<script src="../../../npm/js/utils/ripple.js"></script>
+<script src="../../../npm/js/core/disabled.js"></script>
+<script src="../../../npm/js/core/toggle.js"></script>
+<script>
+  // theme toggle: troca piece-dark / piece-light no body
+  document.getElementById('theme-btn').addEventListener('click', () => {
+    document.body.classList.toggle('piece-dark');
+    document.body.classList.toggle('piece-light');
+  });
+</script>
+</body>
+</html>

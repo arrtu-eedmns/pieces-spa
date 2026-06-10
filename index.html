@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../../src/css/pieces/pieces.css">
+  <style>
+    body { display: grid; place-items: center; min-height: 100vh; }
+    .grid { display: grid; grid-template-columns: repeat(3, 160px); gap: 12px; }
+    .card {
+      height: 80px; border-radius: 12px;
+      display: grid; place-items: center;
+      font-size: 11px; text-align: center; padding: 8px;
+      cursor: pointer;
+    }
+    .piece-controller { position: absolute; opacity: 0; pointer-events: none; }
+  </style>
+</head>
+
+<body class="piece-surface piece-light piece-triade piece-primary background-color-auto-02 text-color-auto-20">
+<div class="grid">
+
+  <!-- 1 · primary estático -->
+  <div class="card piece-surface piece-primary background-color-auto-11 text-color-auto-00">
+    primary
+  </div>
+
+  <!-- 2 · secondary estático -->
+  <div class="card piece-surface piece-secondary background-color-auto-11 text-color-auto-00">
+    secondary
+  </div>
+
+  <!-- 3 · tertiary estático -->
+  <div class="card piece-surface piece-tertiary background-color-auto-11 text-color-auto-00">
+    tertiary
+  </div>
+
+  <!-- 4 · hover → secondary -->
+  <div class="card piece-surface piece-secondary-hover background-color-auto-06 background-color-auto-11-hover text-color-auto-20 text-color-auto-00-hover">
+    hover → secondary
+  </div>
+
+  <!-- 5 · hover → tertiary -->
+  <div class="card piece-surface piece-tertiary-hover background-color-auto-06 background-color-auto-11-hover text-color-auto-20 text-color-auto-00-hover">
+    hover → tertiary
+  </div>
+
+  <!-- 6 · secondary base, hover → primary -->
+  <div class="card piece-surface piece-secondary piece-primary-hover background-color-auto-11 background-color-auto-06-hover text-color-auto-00 text-color-auto-20-hover">
+    secondary → hover primary
+  </div>
+
+  <!-- 7 · toggle: default primary, active → secondary -->
+  <label class="card piece-surface piece-secondary-active background-color-auto-06 background-color-auto-11-active text-color-auto-20 text-color-auto-00-active">
+    <input type="checkbox" class="piece-controller">
+    toggle → secondary
+  </label>
+
+  <!-- 8 · toggle: default primary, active → tertiary -->
+  <label class="card piece-surface piece-tertiary-active background-color-auto-06 background-color-auto-11-active text-color-auto-20 text-color-auto-00-active">
+    <input type="checkbox" class="piece-controller">
+    toggle → tertiary
+  </label>
+
+  <!-- 9 · toggle: active + hover → secondary -->
+  <label class="card piece-surface piece-secondary-hover-active background-color-auto-06 background-color-auto-11-hover-active text-color-auto-20 text-color-auto-00-hover-active">
+    <input type="checkbox" class="piece-controller">
+    active+hover → secondary
+  </label>
+
+  <!-- 10 · os 4 estados com hue diferente por estado -->
+  <label class="card piece-surface
+    piece-secondary-hover
+    piece-tertiary-active
+    piece-secondary-hover-active
+    background-color-auto-06
+    background-color-auto-11-hover
+    background-color-auto-11-active
+    background-color-auto-12-hover-active
+    text-color-auto-20
+    text-color-auto-00-hover
+    text-color-auto-00-active
+    text-color-auto-00-hover-active">
+    <input type="checkbox" class="piece-controller">
+    default · hover · active · active+hover
+  </label>
+
+</div>
+
+<script src="../../src/js/pieces/ripple.js"></script>
+<script src="../../src/js/pieces/disabled.js"></script>
+<script src="../../src/js/pieces/interactive.js"></script>
+<script src="../../src/js/pieces/piece-css-generator.js"></script>
+</body>
+</html>
