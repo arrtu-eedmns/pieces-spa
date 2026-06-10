@@ -1,94 +1,178 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="../../src/css/pieces/pieces.css">
-  <style>
-    body { display: grid; place-items: center; min-height: 100vh; }
-    .grid { display: grid; grid-template-columns: repeat(3, 160px); gap: 12px; }
-    .card {
-      height: 80px; border-radius: 12px;
-      display: grid; place-items: center;
-      font-size: 11px; text-align: center; padding: 8px;
-      cursor: pointer;
-    }
-    .piece-controller { position: absolute; opacity: 0; pointer-events: none; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pieces SPA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:ital,wght@0,100..700;1,100..700&display=swap">
+<!-- @arrtu/pieces -->
+<link rel="stylesheet" href="../npm/css/core/theme.css">
+<link rel="stylesheet" href="../npm/css/core/surface.css">
+<link rel="stylesheet" href="../npm/css/utils/ripple.css">
+<script src="../npm/js/core/piece-css-generator.js"></script>
+<script defer src="../npm/js/utils/ripple.js"></script>
+<script defer src="../npm/js/core/toggle.js"></script>
+<style>
+:root { --piece-base-h: 248; --piece-s: 18%; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Google Sans Flex', sans-serif;
+  min-height: 100vh;
+  padding: 56px 24px;
+}
+
+.page { max-width: 820px; margin: 0 auto; }
+
+.page-header { margin-bottom: 56px; }
+.page-header h1 { font-size: 32px; font-weight: 500; letter-spacing: -.5px; }
+.page-header p  { margin-top: 8px; font-size: 15px; }
+
+.section { margin-bottom: 40px; }
+.section-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 8px;
+}
+
+.spa-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  border-radius: 12px;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+}
+.spa-card-icon { font-size: 22px; flex-shrink: 0; }
+.spa-card-info { display: flex; flex-direction: column; gap: 3px; }
+.spa-card-name { font-size: 14px; font-weight: 500; line-height: 1; }
+.spa-card-desc { font-size: 11px; line-height: 1.4; }
+</style>
 </head>
 
 <body class="piece-surface piece-light piece-triade piece-primary background-color-auto-02 text-color-auto-20">
-<div class="grid">
+<div class="page">
 
-  <!-- 1 · primary estático -->
-  <div class="card piece-surface piece-primary background-color-auto-11 text-color-auto-00">
-    primary
-  </div>
+  <header class="page-header">
+    <h1 class="piece-surface text-color-auto-22">Pieces SPA</h1>
+    <p class="piece-surface text-color-auto-16">Referência visual dos componentes do sistema</p>
+  </header>
 
-  <!-- 2 · secondary estático -->
-  <div class="card piece-surface piece-secondary background-color-auto-11 text-color-auto-00">
-    secondary
-  </div>
+  <!-- ── Core ──────────────────────────────────────────────────────── -->
+  <section class="section">
+    <span class="section-label piece-surface text-color-auto-14">Core</span>
+    <div class="grid">
 
-  <!-- 3 · tertiary estático -->
-  <div class="card piece-surface piece-tertiary background-color-auto-11 text-color-auto-00">
-    tertiary
-  </div>
+      <a href="core/surface/index.html" class="spa-card piece-surface
+        background-color-auto-04
+        background-color-auto-06-hover
+        text-color-auto-20">
+        <span class="piece-ripple"></span>
+        <span class="material-symbols-rounded spa-card-icon piece-surface text-color-auto-11">layers</span>
+        <div class="spa-card-info">
+          <span class="spa-card-name">surface</span>
+          <span class="spa-card-desc piece-surface text-color-auto-14">tokens, alpha, blur, temas</span>
+        </div>
+      </a>
 
-  <!-- 4 · hover → secondary -->
-  <div class="card piece-surface piece-secondary-hover background-color-auto-06 background-color-auto-11-hover text-color-auto-20 text-color-auto-00-hover">
-    hover → secondary
-  </div>
+    </div>
+  </section>
 
-  <!-- 5 · hover → tertiary -->
-  <div class="card piece-surface piece-tertiary-hover background-color-auto-06 background-color-auto-11-hover text-color-auto-20 text-color-auto-00-hover">
-    hover → tertiary
-  </div>
+  <!-- ── Neutral Kit ───────────────────────────────────────────────── -->
+  <section class="section">
+    <span class="section-label piece-surface text-color-auto-14">Neutral Kit</span>
+    <div class="grid">
 
-  <!-- 6 · secondary base, hover → primary -->
-  <div class="card piece-surface piece-secondary piece-primary-hover background-color-auto-11 background-color-auto-06-hover text-color-auto-00 text-color-auto-20-hover">
-    secondary → hover primary
-  </div>
+      <a href="neutral/badge/index.html" class="spa-card piece-surface
+        background-color-auto-04
+        background-color-auto-06-hover
+        text-color-auto-20">
+        <span class="piece-ripple"></span>
+        <span class="material-symbols-rounded spa-card-icon piece-surface text-color-auto-11">badge</span>
+        <div class="spa-card-info">
+          <span class="spa-card-name">badge</span>
+          <span class="spa-card-desc piece-surface text-color-auto-14">contadores e notificações</span>
+        </div>
+      </a>
 
-  <!-- 7 · toggle: default primary, active → secondary -->
-  <label class="card piece-surface piece-secondary-active background-color-auto-06 background-color-auto-11-active text-color-auto-20 text-color-auto-00-active">
-    <input type="checkbox" class="piece-controller">
-    toggle → secondary
-  </label>
+      <a href="neutral/button/index.html" class="spa-card piece-surface
+        background-color-auto-04
+        background-color-auto-06-hover
+        text-color-auto-20">
+        <span class="piece-ripple"></span>
+        <span class="material-symbols-rounded spa-card-icon piece-surface text-color-auto-11">smart_button</span>
+        <div class="spa-card-info">
+          <span class="spa-card-name">button</span>
+          <span class="spa-card-desc piece-surface text-color-auto-14">ações com label e ícone</span>
+        </div>
+      </a>
 
-  <!-- 8 · toggle: default primary, active → tertiary -->
-  <label class="card piece-surface piece-tertiary-active background-color-auto-06 background-color-auto-11-active text-color-auto-20 text-color-auto-00-active">
-    <input type="checkbox" class="piece-controller">
-    toggle → tertiary
-  </label>
+      <a href="neutral/checkbox/index.html" class="spa-card piece-surface
+        background-color-auto-04
+        background-color-auto-06-hover
+        text-color-auto-20">
+        <span class="piece-ripple"></span>
+        <span class="material-symbols-rounded spa-card-icon piece-surface text-color-auto-11">check_box</span>
+        <div class="spa-card-info">
+          <span class="spa-card-name">checkbox</span>
+          <span class="spa-card-desc piece-surface text-color-auto-14">seleção múltipla em forms</span>
+        </div>
+      </a>
 
-  <!-- 9 · toggle: active + hover → secondary -->
-  <label class="card piece-surface piece-secondary-hover-active background-color-auto-06 background-color-auto-11-hover-active text-color-auto-20 text-color-auto-00-hover-active">
-    <input type="checkbox" class="piece-controller">
-    active+hover → secondary
-  </label>
+      <a href="neutral/radio/index.html" class="spa-card piece-surface
+        background-color-auto-04
+        background-color-auto-06-hover
+        text-color-auto-20">
+        <span class="piece-ripple"></span>
+        <span class="material-symbols-rounded spa-card-icon piece-surface text-color-auto-11">radio_button_checked</span>
+        <div class="spa-card-info">
+          <span class="spa-card-name">radio</span>
+          <span class="spa-card-desc piece-surface text-color-auto-14">seleção única em forms</span>
+        </div>
+      </a>
 
-  <!-- 10 · os 4 estados com hue diferente por estado -->
-  <label class="card piece-surface
-    piece-secondary-hover
-    piece-tertiary-active
-    piece-secondary-hover-active
-    background-color-auto-06
-    background-color-auto-11-hover
-    background-color-auto-11-active
-    background-color-auto-12-hover-active
-    text-color-auto-20
-    text-color-auto-00-hover
-    text-color-auto-00-active
-    text-color-auto-00-hover-active">
-    <input type="checkbox" class="piece-controller">
-    default · hover · active · active+hover
-  </label>
+      <a href="neutral/switch/index.html" class="spa-card piece-surface
+        background-color-auto-04
+        background-color-auto-06-hover
+        text-color-auto-20">
+        <span class="piece-ripple"></span>
+        <span class="material-symbols-rounded spa-card-icon piece-surface text-color-auto-11">toggle_on</span>
+        <div class="spa-card-info">
+          <span class="spa-card-name">switch</span>
+          <span class="spa-card-desc piece-surface text-color-auto-14">liga/desliga de configurações</span>
+        </div>
+      </a>
+
+      <a href="neutral/tooltip/index.html" class="spa-card piece-surface
+        background-color-auto-04
+        background-color-auto-06-hover
+        text-color-auto-20">
+        <span class="piece-ripple"></span>
+        <span class="material-symbols-rounded spa-card-icon piece-surface text-color-auto-11">tooltip</span>
+        <div class="spa-card-info">
+          <span class="spa-card-name">tooltip</span>
+          <span class="spa-card-desc piece-surface text-color-auto-14">dicas contextuais</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
 
 </div>
 
-<script src="../../src/js/pieces/ripple.js"></script>
-<script src="../../src/js/pieces/disabled.js"></script>
-<script src="../../src/js/pieces/interactive.js"></script>
-<script src="../../src/js/pieces/piece-css-generator.js"></script>
 </body>
 </html>

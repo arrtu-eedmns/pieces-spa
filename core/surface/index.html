@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Surface — core</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:ital,wght@0,100..700;1,100..700&display=swap">
 <!-- @arrtu/pieces -->
 <link rel="stylesheet" href="../../../npm/css/core/theme.css">
@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="../../../npm/css/neutral/icon-button.css">
 <style>
 :root {
-  --piece-h: 248;
+  --piece-base-h: 248;
   --piece-s: 18%;
   --piece-a: 100%;
   --cursor-pointer: pointer;
@@ -65,14 +65,18 @@ h3  { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spaci
 .channel-trio { display: flex; gap: 4px; }
 .dot { width: 14px; height: 14px; border-radius: 50%; }
 </style>
+<script src="../../../npm/js/core/piece-css-generator.js"></script>
+<script defer src="../../../npm/js/utils/ripple.js"></script>
+<script defer src="../../../npm/js/core/toggle.js"></script>
+<script defer src="../../../npm/js/core/disabled.js"></script>
 </head>
-<body class="piece-surface piece-triade piece-dark background-color-auto-02 text-color-auto-20">
+<body class="piece-surface piece-triade piece-light background-color-auto-02 text-color-auto-20">
 
 <!-- HEADER -->
 <div class="header">
   <h1>Surface — core</h1>
   <div class="theme-hint">
-    <span class="piece-surface text-color-auto-14">dark</span>
+    <span class="piece-surface text-color-auto-14">light</span>
     <button id="theme-btn"
             class="piece-surface piece-icon-button piece-small piece-toggle
                    background-color-auto-04 background-color-auto-06-hover
@@ -748,10 +752,6 @@ h3  { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spaci
   </div>
 </div>
 
-<script src="../../../npm/js/core/piece-css-generator.js"></script>
-<script src="../../../npm/js/utils/ripple.js"></script>
-<script src="../../../npm/js/core/toggle.js"></script>
-<script src="../../../npm/js/core/disabled.js"></script>
 <script>
   document.getElementById('theme-btn').addEventListener('click', () => {
     document.body.classList.toggle('piece-dark');
@@ -760,3 +760,4 @@ h3  { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spaci
 </script>
 </body>
 </html>
+
